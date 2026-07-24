@@ -1,4 +1,4 @@
-/* ===== Boivana v1 ===== */
+/* ===== Boivana v1 Clean CSS ===== */
 
 *{
     margin:0;
@@ -12,12 +12,16 @@ body{
     color:#222;
 }
 
+
+/* Header */
+
 header{
     background:#2E7D32;
-    color:#fff;
+    color:white;
     padding:15px 8%;
     position:sticky;
     top:0;
+    z-index:10;
 }
 
 nav{
@@ -37,6 +41,10 @@ nav a{
     text-decoration:none;
     font-weight:bold;
 }
+
+
+
+/* Hero */
 
 .hero{
     text-align:center;
@@ -61,257 +69,121 @@ nav a{
     border-radius:8px;
 }
 
+
+
+/* Books */
+
 .books{
+
     display:grid;
+
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
     gap:20px;
+
     padding:40px 8%;
+
 }
+
 
 .book{
+
     background:white;
+
     border-radius:12px;
+
     padding:20px;
+
     box-shadow:0 5px 15px rgba(0,0,0,.1);
+
     text-align:center;
+
 }
+
 
 .book button{
+
     margin-top:15px;
+
     padding:10px 18px;
+
     border:none;
+
     background:#2E7D32;
+
     color:white;
+
     border-radius:8px;
+
     cursor:pointer;
+
 }
+
+
+
+/* Footer */
 
 footer{
-.cart-card{
+
+    text-align:center;
+
     padding:20px;
-    margin:15px 0;
-    border-radius:10px;
-    background:#f5f5f5;
+
 }
 
-.cart-card button{
-    padding:8px 15px;
-    border:none;
-    cursor:pointer;
-}
-/* =====================
+
+
+
+
+/* =================
    Cart Design
-===================== */
+================= */
+
 
 .cart-section{
+
     width:90%;
+
     max-width:900px;
+
     margin:40px auto;
+
 }
 
 
 .cart-section h1{
+
     text-align:center;
+
     margin-bottom:30px;
-}
-
-
-.cart-card{
-
-    background:white;
-    padding:20px;
-    margin:15px 0;
-
-    border-radius:15px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-
-.cart-card h3{
-    margin:0;
-}
-
-
-.cart-card p{
-
-    font-size:18px;
-    font-weight:bold;
 
 }
 
-
-
-.cart-card button{
-
-    background:#ff4d4d;
-    color:white;
-
-    border:none;
-
-    padding:8px 15px;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-}
-
-
-.cart-card button:hover{
-
-    opacity:0.8;
-
-}
-
-
-
-#total-price{
-
-    color:#007bff;
-
-}
-.quantity-box{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin:10px 0;
-}
-
-
-.quantity-box button{
-
-    width:35px;
-    height:35px;
-
-    border:none;
-    border-radius:50%;
-
-    cursor:pointer;
-
-    font-size:20px;
-
-}
-
-
-.quantity-box span{
-
-    font-size:18px;
-    font-weight:bold;
-
-}
-/* Quantity Design */
-
-.quantity-box{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin:15px 0;
-}
-
-
-.quantity-box button{
-
-    width:35px;
-    height:35px;
-
-    border:none;
-    border-radius:50%;
-
-    background:#333;
-    color:white;
-
-    font-size:22px;
-
-    cursor:pointer;
-
-}
-
-
-.quantity-box button:hover{
-
-    transform:scale(1.1);
-
-}
-
-
-.quantity-box span{
-
-    min-width:30px;
-
-    text-align:center;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-}.cart-card{
-
-    padding:20px;
-
-    margin:15px 0;
-
-    border-radius:15px;
-
-    background:#ffffff;
-
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-
-}
-.quantity-box {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 15px 0;
-}
-
-.quantity-box button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: black;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.quantity-box span {
-    font-size: 20px;
-    font-weight: bold;
-    min-width: 25px;
-    text-align: center;
-}
-/* Premium Cart Layout */
-
-.cart-section{
-    width:90%;
-    max-width:900px;
-    margin:40px auto;
-}
 
 
 #cart-items{
+
     display:flex;
+
     flex-direction:column;
+
     gap:20px;
+
 }
+
 
 
 .cart-card{
 
     display:grid;
-    grid-template-columns: 1fr auto;
+
+    grid-template-columns:1fr auto;
 
     align-items:center;
 
     padding:25px;
 
-    background:#fff;
+    background:white;
 
     border-radius:18px;
 
@@ -320,11 +192,12 @@ footer{
 }
 
 
+
 .cart-card h3{
 
-    margin:0 0 10px;
-
     font-size:22px;
+
+    margin-bottom:10px;
 
 }
 
@@ -335,9 +208,8 @@ footer{
 
     font-weight:bold;
 
-    margin:5px 0;
-
 }
+
 
 
 /* Quantity */
@@ -358,6 +230,7 @@ footer{
 .quantity-box button{
 
     width:38px;
+
     height:38px;
 
     border-radius:50%;
@@ -371,6 +244,13 @@ footer{
     font-size:22px;
 
     cursor:pointer;
+
+}
+
+
+.quantity-box button:hover{
+
+    transform:scale(1.1);
 
 }
 
@@ -405,9 +285,11 @@ footer{
 
 
 
-/* Total */
+/* Total Price */
 
 #total-price{
+
+    color:#007bff;
 
     font-size:25px;
 
