@@ -1,9 +1,25 @@
 // =======================
-// Boivana Checkout JS
+// Boivana Checkout Firebase JS
 // =======================
 
 
-let cart = JSON.parse(localStorage.getItem("boivanaCart")) || [];
+import { db } from "./firebase.js";
+
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from 
+"https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
+
+
+
+let cart = JSON.parse(
+    localStorage.getItem("boivanaCart")
+) || [];
 
 
 
@@ -17,18 +33,10 @@ let total = 0;
 
 
 
-// Show Checkout Items
+
+// Show checkout items
 
 if(checkoutItems){
-
-
-    if(cart.length === 0){
-
-        checkoutItems.innerHTML =
-        "<h3>Your cart is empty 🛒</h3>";
-
-    }
-
 
 
     cart.forEach(item=>{
@@ -67,7 +75,6 @@ if(checkoutItems){
         checkoutItems.appendChild(div);
 
 
-
     });
 
 
@@ -83,7 +90,6 @@ if(checkoutItems){
 
 // Place Order
 
-
 const orderForm = document.querySelector("#order-form");
 
 
@@ -91,74 +97,89 @@ const orderForm = document.querySelector("#order-form");
 if(orderForm){
 
 
-    orderForm.addEventListener("submit",(e)=>{
+orderForm.addEventListener("submit", async (e)=>{
 
 
-        e.preventDefault();
-
-
-
-        const order = {
-
-
-            customerName:
-            document.querySelector("#name").value,
-
-
-            phone:
-            document.querySelector("#phone").value,
-
-
-            address:
-            document.querySelector("#address").value,
-
-
-            payment:
-            document.querySelector("#payment").value,
-
-
-            products:cart,
-
-
-            total:total,
-
-
-            status:"Pending",
-
-
-            date:new Date().toISOString()
-
-
-        };
+    e.preventDefault();
 
 
 
-        let orders = JSON.parse(
-    localStorage.getItem("boivanaOrders")
-) || [];
+    const order = {
 
 
-orders.push(order);
+        customerName:
+        document.querySelector("#name").value,
 
 
-localStorage.setItem(
-    "boivanaOrders",
-    JSON.stringify(orders)
-);
+        phone:
+        document.querySelector("#phone").value,
 
 
-        localStorage.removeItem("boivanaCart");
+        address:
+        document.querySelector("#address").value,
+
+
+        payment:
+        document.querySelector("#payment").value,
+
+
+        products: cart,
+
+
+        total: total,
+
+
+        status:"Pending",
+
+
+        date: serverTimestamp()
+
+    };
 
 
 
-        alert("Order placed successfully ✅");
+
+
+    try{
+
+
+        await addDoc(
+            collection(db,"orders"),
+            order
+        );
 
 
 
-        window.location.href="order-success.html";
+        localStorage.removeItem(
+            "boivanaCart"
+        );
 
 
-    });
+
+        window.location.href =
+        "order-success.html";
+
+
+
+    }
+
+
+    catch(error){
+
+
+        console.log(error);
+
+
+        alert(
+        "Order failed ❌"
+        );
+
+
+    }
+
+
+
+});
 
 
 }
