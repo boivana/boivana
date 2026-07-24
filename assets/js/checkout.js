@@ -133,11 +133,18 @@ if(orderForm){
 
 
 
-        localStorage.setItem(
-            "boivanaOrder",
-            JSON.stringify(order)
-        );
+        let orders = JSON.parse(
+    localStorage.getItem("boivanaOrders")
+) || [];
 
+
+orders.push(order);
+
+
+localStorage.setItem(
+    "boivanaOrders",
+    JSON.stringify(orders)
+);
 
 
         localStorage.removeItem("boivanaCart");
