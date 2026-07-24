@@ -1,7 +1,31 @@
 // =======================
 // Boivana Admin Orders v2
 // =======================
+let orders = JSON.parse(
+    localStorage.getItem("boivanaOrders")
+) || [];
 
+
+// Old order migration
+
+let oldOrder = JSON.parse(
+    localStorage.getItem("boivanaOrder")
+);
+
+
+if(oldOrder && orders.length === 0){
+
+    oldOrder.status = oldOrder.status || "Pending";
+
+    orders.push(oldOrder);
+
+
+    localStorage.setItem(
+        "boivanaOrders",
+        JSON.stringify(orders)
+    );
+
+}
 
 const orderList = document.querySelector("#order-list");
 
