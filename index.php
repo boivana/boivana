@@ -6,6 +6,7 @@
     <title>Boivana | Read • Learn • Grow</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
 
