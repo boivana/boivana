@@ -1,50 +1,74 @@
 // =======================
-// Boivana Admin Orders v2
+// Boivana Admin Orders Firebase
 // =======================
 
 
-let orders = JSON.parse(
-    localStorage.getItem("boivanaOrders")
-) || [];
+import { db } from "../assets/js/firebase.js";
 
 
-
-// Old order migration support
-
-let oldOrder = JSON.parse(
-    localStorage.getItem("boivanaOrder")
-);
-
-
-if(oldOrder){
-
-    let exists = orders.some(
-        item => item.date === oldOrder.date
-    );
-
-
-    if(!exists){
-
-        oldOrder.status =
-        oldOrder.status || "Pending";
-
-
-        orders.push(oldOrder);
-
-
-        localStorage.setItem(
-            "boivanaOrders",
-            JSON.stringify(orders)
-        );
-
-    }
-
-}
-
+import {
+    collection,
+    getDocs,
+    doc,
+    updateDoc,
+    deleteDoc
+} from 
+"https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
 
 const orderList = document.querySelector("#order-list");
+
+
+
+let orders = [];
+
+
+
+
+
+// =======================
+// Load Orders From Firebase
+// =======================
+
+async function loadOrders(){
+
+
+    orderList.innerHTML = "Loading orders...";
+
+
+
+    const querySnapshot = await getDocs(
+        collection(db,"orders")
+    );
+
+
+
+    orders = [];
+
+
+
+    querySnapshot.forEach((doc)=>{
+
+
+        orders.push({
+
+            id: doc.id,
+
+            ...doc.data()
+
+        });
+
+
+    });
+
+
+
+    showOrders();
+
+
+}
+
 
 
 
@@ -57,23 +81,19 @@ const orderList = document.querySelector("#order-list");
 function showOrders(){
 
 
-    if(!orderList) return;
-
-
     orderList.innerHTML = "";
 
 
 
     if(orders.length === 0){
 
-
         orderList.innerHTML =
         "<h3>No orders found 🛒</h3>";
-
 
         return;
 
     }
+
 
 
 
@@ -90,11 +110,12 @@ function showOrders(){
 
         div.innerHTML = `
 
+
         <div>
 
 
         <h3>
-        Order #${index + 1}
+        Order #${index+1}
         </h3>
 
 
@@ -123,22 +144,19 @@ function showOrders(){
         </p>
 
 
-
         <h4>
         Products:
         </h4>
 
 
         ${
-            order.products.map(item =>
+        order.products.map(item=>
 
-            `
-            <p>
-            ${item.title} × ${item.quantity}
-            </p>
-            `
+        `<p>
+        ${item.title} × ${item.quantity}
+        </p>`
 
-            ).join("")
+        ).join("")
         }
 
 
@@ -148,42 +166,47 @@ function showOrders(){
         </p>
 
 
-        <select onchange="changeStatus(${index},this.value)">
+
+        <select onchange="changeStatus('${order.id}', this.value)">
 
 
-            <option value="Pending"
-            ${order.status==="Pending"?"selected":""}>
-            Pending
-            </option>
+
+        <option value="Pending"
+        ${order.status==="Pending"?"selected":""}>
+        Pending
+        </option>
 
 
-            <option value="Confirmed"
-            ${order.status==="Confirmed"?"selected":""}>
-            Confirmed
-            </option>
+
+        <option value="Confirmed"
+        ${order.status==="Confirmed"?"selected":""}>
+        Confirmed
+        </option>
 
 
-            <option value="Delivered"
-            ${order.status==="Delivered"?"selected":""}>
-            Delivered
-            </option>
+
+        <option value="Delivered"
+        ${order.status==="Delivered"?"selected":""}>
+        Delivered
+        </option>
+
 
 
         </select>
-
 
 
         <br><br>
 
 
 
-        <button onclick="deleteOrder(${index})">
+        <button onclick="deleteOrder('${order.id}')">
         Delete
         </button>
 
 
 
         </div>
+
 
         `;
 
@@ -192,9 +215,11 @@ function showOrders(){
         orderList.appendChild(div);
 
 
+
     });
 
 
+
 }
 
 
@@ -202,28 +227,27 @@ function showOrders(){
 
 
 // =======================
-// Change Status
+// Update Status
 // =======================
 
-function changeStatus(index,status){
+window.changeStatus = async function(id,status){
 
 
-    orders[index].status = status;
-
-
-
-    localStorage.setItem(
-        "boivanaOrders",
-        JSON.stringify(orders)
+    await updateDoc(
+        doc(db,"orders",id),
+        {
+            status:status
+        }
     );
 
 
+    alert("Status updated ✅");
 
-    alert("Order status updated ✅");
+
+    loadOrders();
 
 
 }
-
 
 
 
@@ -233,21 +257,18 @@ function changeStatus(index,status){
 // Delete Order
 // =======================
 
-function deleteOrder(index){
+window.deleteOrder = async function(id){
 
 
-    orders.splice(index,1);
-
-
-
-    localStorage.setItem(
-        "boivanaOrders",
-        JSON.stringify(orders)
+    await deleteDoc(
+        doc(db,"orders",id)
     );
 
 
+    alert("Order deleted ✅");
 
-    showOrders();
+
+    loadOrders();
 
 
 }
@@ -256,4 +277,5 @@ function deleteOrder(index){
 
 
 
-showOrders();
+
+loadOrders();
