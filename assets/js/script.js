@@ -1,78 +1,29 @@
 // Boivana JavaScript
 
+
+// =======================
 // Mobile Menu
+// =======================
+
 const menuBtn = document.querySelector(".menu-btn");
 const nav = document.querySelector(".nav-links");
 
-if(menuBtn){
+if(menuBtn && nav){
     menuBtn.addEventListener("click", () => {
         nav.classList.toggle("active");
     });
 }
 
 
-// Cart Counter
-let cartCount = 0;
 
-const cartButtons = document.querySelectorAll(".buy-btn");
-
-cartButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        cartCount++;
-        alert("Book added to cart! Total books: " + cartCount);
-    });
-});
-// Book Search System
-
-const searchInput = document.querySelector("#search");
-
-if(searchInput){
-    searchInput.addEventListener("keyup", function(){
-        let value = searchInput.value.toLowerCase();
-
-        let books = document.querySelectorAll(".book");
-
-        books.forEach(book => {
-            let title = book.innerText.toLowerCase();
-
-            if(title.includes(value)){
-                book.style.display = "block";
-            }else{
-                book.style.display = "none";
-            }
-        });
-    });
-}
-
-
-// Category Filter
-
-const categoryButtons = document.querySelectorAll(".category-btn");
-
-categoryButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-
-        let category = btn.innerText.toLowerCase();
-
-        let books = document.querySelectorAll(".book");
-
-        books.forEach(book => {
-
-            let bookCategory = book.dataset.category;
-
-            if(category === "all" || bookCategory === category){
-                book.style.display = "block";
-            }else{
-                book.style.display = "none";
-            }
-
-        });
-
-    });
-});
-// Boivana Cart System
+// =======================
+// Cart System
+// =======================
 
 let cart = JSON.parse(localStorage.getItem("boivanaCart")) || [];
+
+
+// Add To Cart
 
 const buyButtons = document.querySelectorAll(".buy-btn");
 
@@ -87,11 +38,18 @@ buyButtons.forEach(button => {
             price: bookCard.querySelector(".price").innerText
         };
 
+
         cart.push(book);
 
-        localStorage.setItem("boivanaCart", JSON.stringify(cart));
+
+        localStorage.setItem(
+            "boivanaCart",
+            JSON.stringify(cart)
+        );
+
 
         alert(book.title + " added to cart 🛒");
+
 
         updateCartCount();
 
@@ -100,7 +58,8 @@ buyButtons.forEach(button => {
 });
 
 
-// Cart Count Update
+
+// Cart Count
 
 function updateCartCount(){
 
@@ -113,84 +72,179 @@ function updateCartCount(){
 }
 
 updateCartCount();
-// Display Cart Items with Remove Button
+
+
+
+
+
+// =======================
+// Search System
+// =======================
+
+const searchInput = document.querySelector("#search");
+
+
+if(searchInput){
+
+    searchInput.addEventListener("keyup", function(){
+
+        let value = searchInput.value.toLowerCase();
+
+        let books = document.querySelectorAll(".book");
+
+
+        books.forEach(book => {
+
+            let title = book.innerText.toLowerCase();
+
+
+            if(title.includes(value)){
+                book.style.display = "block";
+            }
+            else{
+                book.style.display = "none";
+            }
+
+        });
+
+    });
+
+}
+
+
+
+
+// =======================
+// Category Filter
+// =======================
+
+const categoryButtons = document.querySelectorAll(".category-btn");
+
+
+categoryButtons.forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+
+        let category = btn.innerText.toLowerCase();
+
+
+        let books = document.querySelectorAll(".book");
+
+
+        books.forEach(book => {
+
+
+            let bookCategory = book.dataset.category;
+
+
+            if(category === "all" || bookCategory === category){
+
+                book.style.display = "block";
+
+            }
+            else{
+
+                book.style.display = "none";
+
+            }
+
+
+        });
+
+
+    });
+
+});
+
+
+
+
+
+// =======================
+// Display Cart
+// =======================
 
 const cartItems = document.querySelector("#cart-items");
 const totalPrice = document.querySelector("#total-price");
+
 
 if(cartItems){
 
     let total = 0;
 
-    cart.forEach((item, index) => {
 
-        let price = Number(item.price.replace("৳","").trim());
+    cart.forEach((item,index)=>{
+
+
+        let price = Number(
+            item.price.replace("৳","").trim()
+        );
+
+
         total += price;
+
+
 
         let div = document.createElement("div");
 
+
         div.classList.add("cart-card");
 
+
+
         div.innerHTML = `
+
             <h3>${item.title}</h3>
+
             <p>${item.price}</p>
+
             <button onclick="removeCart(${index})">
                 Remove
             </button>
+
         `;
 
+
         cartItems.appendChild(div);
+
 
     });
 
 
+
     if(totalPrice){
+
         totalPrice.innerText = total;
+
     }
+
 
 }
 
 
-// Remove Item
+
+
+
+// =======================
+// Remove Cart Item
+// =======================
 
 function removeCart(index){
 
+
     cart.splice(index,1);
+
+
 
     localStorage.setItem(
         "boivanaCart",
         JSON.stringify(cart)
     );
 
+
+
     location.reload();
 
-}
 
-// Show Cart Items
-
-const cartItems = document.querySelector("#cart-items");
-const totalPrice = document.querySelector("#total-price");
-
-if(cartItems){
-
-    let total = 0;
-
-    cart.forEach((item)=>{
-
-        let div = document.createElement("div");
-
-        div.classList.add("cart-card");
-
-        div.innerHTML = `
-            <h3>${item.title}</h3>
-            <p>${item.price}</p>
-        `;
-
-        cartItems.appendChild(div);
-
-        total += Number(item.price.replace("৳",""));
-
-    });
-
-    totalPrice.innerText = total;
 }
