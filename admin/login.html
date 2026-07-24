@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Boivana Admin Login</title>
+
+<link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<section class="cart-section">
+
+
+<h1>🔐 Admin Login</h1>
+
+
+
+<div class="cart-card">
+
+
+<form id="admin-login">
+
+
+<input 
+type="text"
+id="username"
+placeholder="Username"
+required>
+
+
+<br><br>
+
+
+<input 
+type="password"
+id="password"
+placeholder="Password"
+required>
+
+
+<br><br>
+
+
+<button type="submit">
+Login
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+
+
+<script>
+
+
+document
+.querySelector("#admin-login")
+.addEventListener("submit",(e)=>{
+
+
+e.preventDefault();
+
+
+
+let username =
+document.querySelector("#username").value;
+
+
+let password =
+document.querySelector("#password").value;
+
+
+
+// Temporary Admin Login
+
+if(
+username==="admin" &&
+password==="boivana123"
+){
+
+
+localStorage.setItem(
+"boivanaAdmin",
+"true"
+);
+
+
+window.location.href="dashboard.html";
+
+
+}
+
+else{
+
+
+alert("Wrong username or password ❌");
+
+
+}
+
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
