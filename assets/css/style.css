@@ -1,1 +1,89 @@
+/* ===== Boivana v1 ===== */
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#F8F5EE;
+    color:#222;
+}
+
+header{
+    background:#2E7D32;
+    color:#fff;
+    padding:15px 8%;
+    position:sticky;
+    top:0;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.hero{
+    text-align:center;
+    padding:70px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    color:#555;
+    margin-bottom:25px;
+}
+
+.hero input{
+    width:320px;
+    max-width:90%;
+    padding:12px;
+    border:2px solid #2E7D32;
+    border-radius:8px;
+}
+
+.books{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:40px 8%;
+}
+
+.book{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+.book button{
+    margin-top:15px;
+    padding:10px 18px;
+    border:none;
+    background:#2E7D32;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+footer{
