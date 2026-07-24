@@ -1,29 +1,42 @@
 // =======================
 // Boivana Admin Orders v2
 // =======================
+
 let orders = JSON.parse(
     localStorage.getItem("boivanaOrders")
 ) || [];
 
 
-// Old order migration
+// Keep old order after refresh
 
 let oldOrder = JSON.parse(
     localStorage.getItem("boivanaOrder")
 );
 
 
-if(oldOrder && orders.length === 0){
+if(oldOrder){
 
-    oldOrder.status = oldOrder.status || "Pending";
-
-    orders.push(oldOrder);
-
-
-    localStorage.setItem(
-        "boivanaOrders",
-        JSON.stringify(orders)
+    let exists = orders.some(
+        item => 
+        item.date === oldOrder.date
     );
+
+
+    if(!exists){
+
+        oldOrder.status =
+        oldOrder.status || "Pending";
+
+
+        orders.push(oldOrder);
+
+
+        localStorage.setItem(
+            "boivanaOrders",
+            JSON.stringify(orders)
+        );
+
+    }
 
 }
 
