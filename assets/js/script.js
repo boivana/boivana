@@ -1,131 +1,32 @@
 // =======================
-// Boivana v2 JavaScript
+// Boivana v3 JavaScript
 // =======================
+
+
+// Firebase
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from 
+"https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
 
 
 // Cart Data
 
-let cart = JSON.parse(localStorage.getItem("boivanaCart")) || [];
+let cart = JSON.parse(
+    localStorage.getItem("boivanaCart")
+) || [];
 
 
 
 
 // =======================
-// Buy Now
-// =======================
-
-// =======================
-// Buy Now Button (Dynamic)
-// =======================
-
-
-document.addEventListener("click", (e)=>{
-
-
-    if(e.target.classList.contains("buy-btn")){
-
-
-        const bookCard = e.target.closest(".book");
-
-
-
-        const book = {
-
-
-            title:
-            bookCard.querySelector("h3").innerText,
-
-
-            price:
-            bookCard.querySelector("p")
-            .innerText
-            .replace("৳","")
-            .trim(),
-
-
-            image:
-            bookCard.querySelector("img")
-            ?
-            bookCard.querySelector("img").src
-            :
-            "",
-
-
-            quantity:1
-
-
-        };
-
-
-
-        cart.push(book);
-
-
-
-        localStorage.setItem(
-            "boivanaCart",
-            JSON.stringify(cart)
-        );
-
-
-
-        alert(
-        book.title + " added to cart 🛒"
-        );
-
-
-
-        updateCartCount();
-
-
-    }
-
-
-});
-
-        const bookCard = button.closest(".book");
-
-
-        const book = {
-
-            title: bookCard.querySelector("h3").innerText,
-
-            price: Number(
-                bookCard.querySelector("p")
-                .innerText
-                .replace("৳","")
-                .trim()
-            ),
-
-            image: bookCard.querySelector("img").src,
-
-            quantity:1
-
-        };
-
-
-        cart.push(book);
-
-
-        saveCart();
-
-
-        alert(book.title + " added to cart 🛒");
-
-
-        updateCartCount();
-
-
-    });
-
-});
-
-
-
-
-
-// =======================
-// Save Cart
+// Cart Save
 // =======================
 
 function saveCart(){
@@ -147,12 +48,11 @@ function saveCart(){
 
 function updateCartCount(){
 
-
-    const count = document.querySelector("#cart-count");
+    const count =
+    document.querySelector("#cart-count");
 
 
     if(count){
-
 
         let total = 0;
 
@@ -166,9 +66,7 @@ function updateCartCount(){
 
         count.innerText = total;
 
-
     }
-
 
 }
 
@@ -180,220 +78,12 @@ updateCartCount();
 
 
 // =======================
-// Search Books
+// Load Books Firebase
 // =======================
 
-const searchInput = document.querySelector("input");
 
-
-if(searchInput){
-
-
-    searchInput.addEventListener("keyup",()=>{
-
-
-        let value = searchInput.value.toLowerCase();
-
-
-        document.querySelectorAll(".book")
-        .forEach(book=>{
-
-
-            let text = book.innerText.toLowerCase();
-
-
-            book.style.display =
-            text.includes(value)
-            ? "block"
-            : "none";
-
-
-        });
-
-
-    });
-
-}
-
-
-
-
-
-// =======================
-// Show Cart
-// =======================
-
-const cartItems = document.querySelector("#cart-items");
-
-const totalPrice = document.querySelector("#total-price");
-
-
-
-if(cartItems){
-
-
-    let total = 0;
-
-
-    if(cart.length === 0){
-
-        cartItems.innerHTML =
-        "<h3>Your cart is empty 🛒</h3>";
-
-    }
-
-
-
-    cart.forEach((item,index)=>{
-
-
-        if(!item.quantity){
-
-            item.quantity = 1;
-
-        }
-
-
-        total += item.price * item.quantity;
-
-
-
-        let div = document.createElement("div");
-
-
-        div.classList.add("cart-card");
-
-
-
-        div.innerHTML = `
-
-            <img src="${item.image}" 
-            width="100">
-
-
-            <div>
-
-            <h3>${item.title}</h3>
-
-
-            <p>৳${item.price}</p>
-
-
-            <div class="quantity-box">
-
-                <button onclick="changeQuantity(${index},-1)">
-                -
-                </button>
-
-
-                <span>
-                ${item.quantity}
-                </span>
-
-
-                <button onclick="changeQuantity(${index},1)">
-                +
-                </button>
-
-
-            </div>
-
-
-            <button onclick="removeCart(${index})">
-            Remove
-            </button>
-
-
-            </div>
-
-        `;
-
-
-
-        cartItems.appendChild(div);
-
-
-
-    });
-
-
-
-    if(totalPrice){
-
-        totalPrice.innerText = total;
-
-    }
-
-
-}
-
-
-
-
-
-// =======================
-// Remove Cart
-// =======================
-
-function removeCart(index){
-
-
-    cart.splice(index,1);
-
-
-    saveCart();
-
-
-    location.reload();
-
-
-}
-
-
-
-
-
-// =======================
-// Quantity Change
-// =======================
-
-function changeQuantity(index,value){
-
-
-    cart[index].quantity += value;
-
-
-
-    if(cart[index].quantity < 1){
-
-        cart[index].quantity = 1;
-
-    }
-
-
-
-    saveCart();
-
-
-    location.reload();
-
-
-}
-// =======================
-// Load Books From Firebase
-// =======================
-
-import { db } from "./firebase.js";
-
-import {
-    collection,
-    getDocs
-} from 
-"https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
-
-
-const bookContainer = document.querySelector("#book-container");
+const bookContainer =
+document.querySelector("#book-container");
 
 
 
@@ -404,28 +94,32 @@ async function loadBooks(){
 
 
 
-    bookContainer.innerHTML = "Loading books...";
+    bookContainer.innerHTML =
+    "Loading books...";
 
 
 
-    const snapshot = await getDocs(
+    const snapshot =
+    await getDocs(
         collection(db,"books")
     );
 
 
 
-    bookContainer.innerHTML = "";
+    bookContainer.innerHTML="";
 
 
 
-    snapshot.forEach((item)=>{
+    snapshot.forEach((doc)=>{
 
 
-        let book = item.data();
+        let book = doc.data();
 
 
 
-        let div = document.createElement("div");
+        let div =
+        document.createElement("div");
+
 
 
         div.classList.add("book");
@@ -464,8 +158,137 @@ async function loadBooks(){
     });
 
 
+
 }
 
 
 
 loadBooks();
+
+
+
+
+
+
+// =======================
+// Buy Now Dynamic
+// =======================
+
+
+document.addEventListener(
+"click",
+(e)=>{
+
+
+    if(
+    e.target.classList.contains("buy-btn")
+    ){
+
+
+        const bookCard =
+        e.target.closest(".book");
+
+
+
+        const book = {
+
+
+            title:
+            bookCard.querySelector("h3").innerText,
+
+
+            price:
+            Number(
+            bookCard.querySelector("p")
+            .innerText
+            .replace("৳","")
+            .trim()
+            ),
+
+
+            image:
+            bookCard.querySelector("img").src,
+
+
+            quantity:1
+
+
+        };
+
+
+
+        cart.push(book);
+
+
+
+        saveCart();
+
+
+
+        alert(
+        book.title+
+        " added to cart 🛒"
+        );
+
+
+
+        updateCartCount();
+
+
+    }
+
+
+});
+
+
+
+
+
+
+// =======================
+// Search
+// =======================
+
+
+const searchInput =
+document.querySelector("input");
+
+
+
+if(searchInput){
+
+
+searchInput.addEventListener(
+"keyup",
+()=>{
+
+
+let value =
+searchInput.value.toLowerCase();
+
+
+
+document.querySelectorAll(".book")
+.forEach(book=>{
+
+
+let text =
+book.innerText.toLowerCase();
+
+
+
+book.style.display =
+text.includes(value)
+?
+"block"
+:
+"none";
+
+
+});
+
+
+});
+
+
+}
