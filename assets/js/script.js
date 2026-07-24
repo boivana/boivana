@@ -165,3 +165,32 @@ function removeCart(index){
     location.reload();
 
 }
+
+// Show Cart Items
+
+const cartItems = document.querySelector("#cart-items");
+const totalPrice = document.querySelector("#total-price");
+
+if(cartItems){
+
+    let total = 0;
+
+    cart.forEach((item)=>{
+
+        let div = document.createElement("div");
+
+        div.classList.add("cart-card");
+
+        div.innerHTML = `
+            <h3>${item.title}</h3>
+            <p>${item.price}</p>
+        `;
+
+        cartItems.appendChild(div);
+
+        total += Number(item.price.replace("৳",""));
+
+    });
+
+    totalPrice.innerText = total;
+}
