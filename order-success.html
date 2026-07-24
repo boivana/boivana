@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Order Success | Boivana</title>
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h2>📚 Boivana</h2>
+
+</header>
+
+
+
+<section class="cart-section">
+
+
+<h1>✅ Order Successful!</h1>
+
+
+<div class="cart-card">
+
+<h3>
+Thank you for your order.
+</h3>
+
+
+<p>
+আমরা দ্রুত আপনার সাথে যোগাযোগ করবো।
+</p>
+
+
+<p>
+Order ID:
+<span id="order-id"></span>
+</p>
+
+
+<a href="index.html">
+<button>
+Continue Shopping
+</button>
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+<script>
+
+let order = JSON.parse(
+localStorage.getItem("boivanaOrder")
+);
+
+
+if(order){
+
+
+let id =
+"BV" + Date.now();
+
+
+document.querySelector("#order-id")
+.innerText = id;
+
+
+
+localStorage.setItem(
+"boivanaOrderID",
+id
+);
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
