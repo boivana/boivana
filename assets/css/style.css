@@ -204,3 +204,61 @@ footer{
     font-weight:bold;
 
 }
+/* Quantity Design */
+
+.quantity-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:15px 0;
+}
+
+
+.quantity-box button{
+
+    width:35px;
+    height:35px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#333;
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+
+.quantity-box button:hover{
+
+    transform:scale(1.1);
+
+}
+
+
+.quantity-box span{
+
+    min-width:30px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}.cart-card{
+
+    padding:20px;
+
+    margin:15px 0;
+
+    border-radius:15px;
+
+    background:#ffffff;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
