@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Orders | Boivana Admin</title>
+
+<link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h2>🛒 Boivana Orders</h2>
+
+<a href="dashboard.html">
+← Dashboard
+</a>
+
+</header>
+
+
+
+
+<section class="cart-section">
+
+
+<h1>Customer Orders</h1>
+
+
+<div id="order-list"></div>
+
+
+</section>
+
+
+
+
+<script src="orders.js"></script>
+
+
+
+<script>
+
+if(
+localStorage.getItem("boivanaAdmin")
+!=="true"
+){
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
