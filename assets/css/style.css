@@ -262,3 +262,27 @@ footer{
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 }
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.quantity-box button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: black;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.quantity-box span {
+    font-size: 20px;
+    font-weight: bold;
+    min-width: 25px;
+    text-align: center;
+}
