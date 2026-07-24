@@ -30,7 +30,7 @@ if(searchInput){
     searchInput.addEventListener("keyup", function(){
         let value = searchInput.value.toLowerCase();
 
-        let books = document.querySelectorAll(".book-card");
+        let books = document.querySelectorAll(".book");
 
         books.forEach(book => {
             let title = book.innerText.toLowerCase();
