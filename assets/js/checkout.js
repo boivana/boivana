@@ -148,7 +148,7 @@ if(orderForm){
 
 
 
-        window.location.href="index.html";
+        window.location.href="order-success.html";
 
 
     });
