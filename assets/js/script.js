@@ -113,7 +113,7 @@ function updateCartCount(){
 }
 
 updateCartCount();
-// Display Cart Items
+// Display Cart Items with Remove Button
 
 const cartItems = document.querySelector("#cart-items");
 const totalPrice = document.querySelector("#total-price");
@@ -122,17 +122,46 @@ if(cartItems){
 
     let total = 0;
 
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
+
+        let price = Number(item.price.replace("৳","").trim());
+        total += price;
 
         let div = document.createElement("div");
+
+        div.classList.add("cart-card");
 
         div.innerHTML = `
             <h3>${item.title}</h3>
             <p>${item.price}</p>
+            <button onclick="removeCart(${index})">
+                Remove
+            </button>
         `;
 
         cartItems.appendChild(div);
 
     });
+
+
+    if(totalPrice){
+        totalPrice.innerText = total;
+    }
+
+}
+
+
+// Remove Item
+
+function removeCart(index){
+
+    cart.splice(index,1);
+
+    localStorage.setItem(
+        "boivanaCart",
+        JSON.stringify(cart)
+    );
+
+    location.reload();
 
 }
