@@ -22,12 +22,65 @@
     <div id="cart-items"></div>
 
     <h2>
-        Total: ৳ <span id="total-price">0</span>
-    </h2>
+    Total: ৳ <span id="total-price">0</span>
+</h2>
+
+
+<br>
+
+
+<button id="checkout-btn">
+    Proceed to Checkout
+</button>
 
 </section>
 
+<style>
 
+#checkout-btn{
+
+    background:#2E7D32;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+
+#checkout-btn:hover{
+
+    background:#1B5E20;
+
+}
+
+</style>
+
+
+<script>
+
+const checkoutBtn = document.querySelector("#checkout-btn");
+
+
+if(checkoutBtn){
+
+    checkoutBtn.addEventListener("click",()=>{
+
+        window.location.href="checkout.html";
+
+    });
+
+}
+
+</script>
 <script src="assets/js/script.js"></script>
 
 </body>
