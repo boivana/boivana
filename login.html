@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Boivana | Register</title>
+<title>Boivana | Login</title>
 
 <link rel="stylesheet" href="assets/css/style.css">
 
@@ -14,81 +15,212 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:#f6f5ef;
+
+    min-height:100vh;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+
+    background:
+    linear-gradient(135deg,#1B5E20,#2E7D32,#66BB6A);
+
+    overflow:hidden;
+
 }
 
-.register-box{
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+    height:320px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    top:-80px;
+    left:-80px;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    bottom:-70px;
+    right:-70px;
+
+}
+
+.login-card{
+
+    position:relative;
+
     width:90%;
     max-width:420px;
-    background:#fff;
-    padding:35px;
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:24px;
+
+    padding:40px 30px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+    text-align:center;
+
 }
 
 .logo{
-    text-align:center;
-    font-size:40px;
+
+    width:90px;
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:45px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+
 }
 
 h2{
-    text-align:center;
-    color:#2E7D32;
-    margin:15px 0;
-}
 
-p{
-    text-align:center;
-    color:#666;
-    margin-bottom:25px;
-}
-
-input{
-    width:100%;
-    padding:14px;
-    margin-bottom:15px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-size:16px;
-}
-
-input:focus{
-    outline:none;
-    border-color:#2E7D32;
-}
-
-button{
-    width:100%;
-    padding:14px;
-    border:none;
-    background:#2E7D32;
     color:#fff;
-    border-radius:8px;
-    font-size:17px;
-    cursor:pointer;
-}
 
-button:hover{
-    background:#256428;
-}
-
-.bottom{
-    text-align:center;
     margin-top:20px;
+
+    font-size:30px;
+
 }
 
-.bottom a{
-    color:#2E7D32;
-    text-decoration:none;
+.subtitle{
+
+    color:#E8F5E9;
+
+    margin:10px 0 30px;
+
+    font-size:15px;
+
+}
+
+.input-box{
+
+    margin-bottom:18px;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.9);
+
+    font-size:16px;
+
+}
+
+.input-box input:focus{
+
+    outline:none;
+
+    box-shadow:0 0 0 3px rgba(255,255,255,.35);
+
+}
+
+.login-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#FFD54F;
+
+    color:#222;
+
+    font-size:18px;
+
     font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.extra{
+
+    margin-top:22px;
+
+    color:#fff;
+
+    font-size:15px;
+
+}
+
+.extra a{
+
+    color:#FFD54F;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.footer{
+
+    margin-top:25px;
+
+    color:#E8F5E9;
+
+    font-size:13px;
+
 }
 
 </style>
@@ -97,37 +229,59 @@ button:hover{
 
 <body>
 
-<div class="register-box">
+<div class="login-card">
 
-<div class="logo">📚</div>
+<div class="logo">
+📚
+</div>
 
-<h2>Create Your Account</h2>
+<h2>Boivana</h2>
 
-<p>Join Boivana and discover your next favourite book.</p>
+<p class="subtitle">
+Welcome Back! Sign in to continue your reading journey.
+</p>
+
+<div class="input-box">
 
 <input
 type="email"
 id="email"
-placeholder="Email Address">
+placeholder="📧 Email Address">
+
+</div>
+
+<div class="input-box">
 
 <input
 type="password"
 id="password"
-placeholder="Password (Minimum 6 characters)">
+placeholder="🔒 Password">
 
-<button onclick="registerUser()">
-Create Account
+</div>
+
+<button
+class="login-btn"
+onclick="loginUser()">
+
+Login
+
 </button>
 
-<div class="bottom">
+<div class="extra">
 
-Already have an account?
+Don't have an account?
 
 <br><br>
 
-<a href="login.html">
-Login Now
+<a href="register.html">
+Create Account
 </a>
+
+</div>
+
+<div class="footer">
+
+© 2026 Boivana • Read More, Learn More
 
 </div>
 
@@ -136,4 +290,5 @@ Login Now
 <script type="module" src="assets/js/auth.js"></script>
 
 </body>
+
 </html>
