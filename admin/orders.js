@@ -2,12 +2,14 @@
 // Boivana Admin Orders v2
 // =======================
 
+
 let orders = JSON.parse(
     localStorage.getItem("boivanaOrders")
 ) || [];
 
 
-// Keep old order after refresh
+
+// Old order migration support
 
 let oldOrder = JSON.parse(
     localStorage.getItem("boivanaOrder")
@@ -17,8 +19,7 @@ let oldOrder = JSON.parse(
 if(oldOrder){
 
     let exists = orders.some(
-        item => 
-        item.date === oldOrder.date
+        item => item.date === oldOrder.date
     );
 
 
@@ -40,17 +41,18 @@ if(oldOrder){
 
 }
 
+
+
+
 const orderList = document.querySelector("#order-list");
 
 
-let orders = JSON.parse(
-    localStorage.getItem("boivanaOrders")
-) || [];
 
 
 
-
+// =======================
 // Show Orders
+// =======================
 
 function showOrders(){
 
@@ -58,18 +60,21 @@ function showOrders(){
     if(!orderList) return;
 
 
-    orderList.innerHTML="";
+    orderList.innerHTML = "";
 
 
 
     if(orders.length === 0){
 
+
         orderList.innerHTML =
         "<h3>No orders found 🛒</h3>";
+
 
         return;
 
     }
+
 
 
 
@@ -85,12 +90,11 @@ function showOrders(){
 
         div.innerHTML = `
 
-
         <div>
 
 
         <h3>
-        Order #${index+1}
+        Order #${index + 1}
         </h3>
 
 
@@ -119,19 +123,22 @@ function showOrders(){
         </p>
 
 
-        <p>
+
+        <h4>
         Products:
-        </p>
+        </h4>
 
 
         ${
-        order.products.map(item=>
-        `
-        <p>
-        ${item.title} × ${item.quantity}
-        </p>
-        `
-        ).join("")
+            order.products.map(item =>
+
+            `
+            <p>
+            ${item.title} × ${item.quantity}
+            </p>
+            `
+
+            ).join("")
         }
 
 
@@ -141,26 +148,25 @@ function showOrders(){
         </p>
 
 
-
-        <select onchange="changeStatus(${index}, this.value)">
-
-
-        <option 
-        ${order.status==="Pending"?"selected":""}>
-        Pending
-        </option>
+        <select onchange="changeStatus(${index},this.value)">
 
 
-        <option
-        ${order.status==="Confirmed"?"selected":""}>
-        Confirmed
-        </option>
+            <option value="Pending"
+            ${order.status==="Pending"?"selected":""}>
+            Pending
+            </option>
 
 
-        <option
-        ${order.status==="Delivered"?"selected":""}>
-        Delivered
-        </option>
+            <option value="Confirmed"
+            ${order.status==="Confirmed"?"selected":""}>
+            Confirmed
+            </option>
+
+
+            <option value="Delivered"
+            ${order.status==="Delivered"?"selected":""}>
+            Delivered
+            </option>
 
 
         </select>
@@ -179,13 +185,11 @@ function showOrders(){
 
         </div>
 
-
         `;
 
 
 
         orderList.appendChild(div);
-
 
 
     });
@@ -196,7 +200,10 @@ function showOrders(){
 
 
 
+
+// =======================
 // Change Status
+// =======================
 
 function changeStatus(index,status){
 
@@ -204,10 +211,12 @@ function changeStatus(index,status){
     orders[index].status = status;
 
 
+
     localStorage.setItem(
         "boivanaOrders",
         JSON.stringify(orders)
     );
+
 
 
     alert("Order status updated ✅");
@@ -219,7 +228,10 @@ function changeStatus(index,status){
 
 
 
+
+// =======================
 // Delete Order
+// =======================
 
 function deleteOrder(index){
 
@@ -239,6 +251,7 @@ function deleteOrder(index){
 
 
 }
+
 
 
 
