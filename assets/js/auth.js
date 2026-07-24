@@ -35,7 +35,11 @@ window.registerUser = async function () {
 
     } catch (error) {
 
-        alert(error.message);
+    console.log(error);
+
+    alert(error.code + "\n" + error.message);
+
+}
 
     }
 
