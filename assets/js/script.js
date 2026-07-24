@@ -6,6 +6,7 @@
 // =======================
 // Cart Data
 // =======================
+alert("Boivana JS Loaded");
 
 let cart = JSON.parse(localStorage.getItem("boivanaCart")) || [];
 
