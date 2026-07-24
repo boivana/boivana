@@ -166,16 +166,23 @@ if(cartItems){
 
         div.innerHTML = `
 
-            <h3>${item.title}</h3>
+<h3>${item.title}</h3>
 
-            <p>${item.price}</p>
+<p>${item.price}</p>
 
-            <button onclick="removeCart(${index})">
-                Remove
-            </button>
+<div>
+<button onclick="changeQuantity(${index}, -1)">-</button>
 
-        `;
+<span>${item.quantity || 1}</span>
 
+<button onclick="changeQuantity(${index}, 1)">+</button>
+</div>
+
+<button onclick="removeCart(${index})">
+Remove
+</button>
+
+`;
 
 
         cartItems.appendChild(div);
