@@ -1,4 +1,3 @@
-alert("JS Working");
 // =======================
 // Boivana JavaScript
 // =======================
