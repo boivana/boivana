@@ -1,38 +1,14 @@
 // =======================
-// Boivana Admin Orders JS
+// Boivana Admin Orders v2
 // =======================
 
 
 const orderList = document.querySelector("#order-list");
 
 
-// Get Order
-
 let orders = JSON.parse(
     localStorage.getItem("boivanaOrders")
 ) || [];
-
-
-
-// Temporary support
-// যদি পুরোনো single order থাকে
-
-let oldOrder = JSON.parse(
-    localStorage.getItem("boivanaOrder")
-);
-
-
-if(oldOrder && orders.length === 0){
-
-    orders.push(oldOrder);
-
-
-    localStorage.setItem(
-        "boivanaOrders",
-        JSON.stringify(orders)
-    );
-
-}
 
 
 
@@ -57,7 +33,6 @@ function showOrders(){
         return;
 
     }
-
 
 
 
@@ -107,36 +82,60 @@ function showOrders(){
         </p>
 
 
-
         <p>
-        Status:
-        ${order.status}
-        </p>
-
-
-
-        <h4>
         Products:
-        </h4>
-
+        </p>
 
 
         ${
         order.products.map(item=>
-
-        `<p>
+        `
+        <p>
         ${item.title} × ${item.quantity}
-        </p>`
-
+        </p>
+        `
         ).join("")
         }
 
 
 
+        <p>
+        Status:
+        </p>
+
+
+
+        <select onchange="changeStatus(${index}, this.value)">
+
+
+        <option 
+        ${order.status==="Pending"?"selected":""}>
+        Pending
+        </option>
+
+
+        <option
+        ${order.status==="Confirmed"?"selected":""}>
+        Confirmed
+        </option>
+
+
+        <option
+        ${order.status==="Delivered"?"selected":""}>
+        Delivered
+        </option>
+
+
+        </select>
+
+
+
+        <br><br>
+
+
+
         <button onclick="deleteOrder(${index})">
-
         Delete
-
         </button>
 
 
@@ -156,6 +155,29 @@ function showOrders(){
 
 
 }
+
+
+
+
+// Change Status
+
+function changeStatus(index,status){
+
+
+    orders[index].status = status;
+
+
+    localStorage.setItem(
+        "boivanaOrders",
+        JSON.stringify(orders)
+    );
+
+
+    alert("Order status updated ✅");
+
+
+}
+
 
 
 
