@@ -318,3 +318,93 @@ function changeQuantity(index,value){
 
 
 }
+// =======================
+// Load Books From Firebase
+// =======================
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from 
+"https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
+
+const bookContainer = document.querySelector("#book-container");
+
+
+
+async function loadBooks(){
+
+
+    if(!bookContainer) return;
+
+
+
+    bookContainer.innerHTML = "Loading books...";
+
+
+
+    const snapshot = await getDocs(
+        collection(db,"books")
+    );
+
+
+
+    bookContainer.innerHTML = "";
+
+
+
+    snapshot.forEach((item)=>{
+
+
+        let book = item.data();
+
+
+
+        let div = document.createElement("div");
+
+
+        div.classList.add("book");
+
+
+
+        div.innerHTML = `
+
+
+        <img src="${book.image}" width="120">
+
+
+        <h3>
+        ${book.title}
+        </h3>
+
+
+        <p>
+        ৳${book.price}
+        </p>
+
+
+        <button class="buy-btn">
+        Buy Now
+        </button>
+
+
+        `;
+
+
+
+        bookContainer.appendChild(div);
+
+
+
+    });
+
+
+}
+
+
+
+loadBooks();
