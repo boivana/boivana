@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Manage Books | Boivana Admin</title>
+
+<link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h2>📚 Manage Books</h2>
+
+<a href="dashboard.html">
+← Dashboard
+</a>
+
+</header>
+
+
+
+
+<section class="cart-section">
+
+
+<h1>Add New Book</h1>
+
+
+
+<div class="cart-card">
+
+
+<form id="book-form">
+
+
+<input 
+type="text"
+id="book-title"
+placeholder="Book Name"
+required>
+
+
+<br><br>
+
+
+
+<input 
+type="number"
+id="book-price"
+placeholder="Price"
+required>
+
+
+<br><br>
+
+
+
+<input 
+type="text"
+id="book-image"
+placeholder="Image path">
+
+<br><br>
+
+
+
+<button type="submit">
+Add Book
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+
+
+<h1>Book List</h1>
+
+
+<div id="book-list"></div>
+
+
+
+</section>
+
+
+
+
+
+<script src="books.js"></script>
+
+
+
+<script>
+
+if(
+localStorage.getItem("boivanaAdmin")
+!=="true"
+){
+
+window.location.href="login.html";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
