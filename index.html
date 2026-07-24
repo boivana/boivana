@@ -12,78 +12,84 @@
 <body>
 
 
-<header>
+<header class="premium-header">
+
+    <div class="logo">
+
+        📚 <span>Boivana</span>
+
+    </div>
 
     <nav>
 
-        <h2>📚 Boivana</h2>
+        <a href="index.html">Home</a>
 
-        <ul>
+        <a href="#books">Books</a>
 
-            <li>
-                <a href="index.html">Home</a>
-            </li>
+        <a href="cart.html">
 
-            <li>
-                <a href="#books">Books</a>
-            </li>
+            🛒 Cart
+            <span id="cart-count">0</span>
 
-            <li>
-                <a href="#">Categories</a>
-            </li>
+        </a>
 
-            <li>
-                <a href="#">Contact</a>
-            </li>
-
-            <li>
-                <a href="cart.html">
-                    🛒 Cart (<span id="cart-count">0</span>)
-                </a>
-            </li>
-
-        </ul>
+        <a href="login.html">👤 Account</a>
 
     </nav>
 
 </header>
 
 
-
-
 <section class="hero">
 
-    <h1>
-        Welcome to Boivana
-    </h1>
+    <div class="hero-left">
 
-    <p>
-        Read • Learn • Grow
-    </p>
+        <h1>
 
+            Read More.
+            <br>
+            Learn More.
+            <br>
+            Grow More.
 
-    <input 
-        type="text"
-        placeholder="Search books..."
-    >
+        </h1>
+
+        <p>
+
+            Bangladesh's modern online bookstore.
+            Discover thousands of books with the
+            best prices and secure checkout.
+
+        </p>
+
+        <a href="#books" class="hero-btn">
+
+            Explore Books
+
+        </a>
+
+    </div>
+
+    <div class="hero-right">
+
+        📚
+
+    </div>
 
 </section>
 
 
-
-
-
 <section id="books">
 
-    <h2 style="text-align:center;">
+    <h2 class="section-title">
+
         Featured Books
+
     </h2>
 
+    <div class="books" id="book-container">
 
-    <div class="books">
-<div class="books" id="book-container">
-
-</div>
+    </div>
 
 </section>
 
