@@ -31,6 +31,8 @@ buyButtons.forEach(button => {
             title: bookCard.querySelector("h3").innerText,
 
             price: bookCard.querySelector("p").innerText
+            
+            quantity: 1
 
         };
 
@@ -226,5 +228,33 @@ function removeCart(index){
 
     location.reload();
 
+
+}
+// Quantity Change
+
+function changeQuantity(index, value){
+
+    if(!cart[index].quantity){
+        cart[index].quantity = 1;
+    }
+
+
+    cart[index].quantity += value;
+
+
+    if(cart[index].quantity < 1){
+
+        cart[index].quantity = 1;
+
+    }
+
+
+    localStorage.setItem(
+        "boivanaCart",
+        JSON.stringify(cart)
+    );
+
+
+    location.reload();
 
 }
