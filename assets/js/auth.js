@@ -117,5 +117,32 @@ window.logoutUser = async function(){
 
     location.reload();
 
+import {
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
+
+
+onAuthStateChanged(auth,(user)=>{
+
+
+    let page =
+    window.location.pathname;
+
+
+
+    if(!user && !page.includes("login.html") && !page.includes("register.html")){
+
+
+        window.location.href =
+        "login.html";
+
+
+    }
+
+
+
+});
 }
