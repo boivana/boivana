@@ -149,49 +149,54 @@ if(cartItems){
 
     cart.forEach((item,index)=>{
 
+    if(!item.quantity){
+        item.quantity = 1;
+    }
 
-        let price = Number(
-            item.price.replace("৳","").trim()
-        );
+    let price = Number(item.price.replace("৳","").trim());
 
-
-        total += price;
-
-
-
-        let div = document.createElement("div");
+    total += price * item.quantity;
 
 
-        div.classList.add("cart-card");
+    let div = document.createElement("div");
+
+    div.classList.add("cart-card");
 
 
+    div.innerHTML = `
 
-        div.innerHTML = `
+        <h3>${item.title}</h3>
 
-<h3>${item.title}</h3>
-
-<p>${item.price}</p>
-
-<div>
-<button onclick="changeQuantity(${index}, -1)">-</button>
-
-<span>${item.quantity || 1}</span>
-
-<button onclick="changeQuantity(${index}, 1)">+</button>
-</div>
-
-<button onclick="removeCart(${index})">
-Remove
-</button>
-
-`;
+        <p>${item.price}</p>
 
 
-        cartItems.appendChild(div);
+        <div class="quantity-box">
+
+            <button onclick="changeQuantity(${index}, -1)">
+                -
+            </button>
 
 
+            <span>${item.quantity}</span>
 
-    });
+
+            <button onclick="changeQuantity(${index}, 1)">
+                +
+            </button>
+
+        </div>
+
+
+        <button onclick="removeCart(${index})">
+            Remove
+        </button>
+
+    `;
+
+
+    cartItems.appendChild(div);
+
+});
 
 
 
@@ -246,6 +251,30 @@ function changeQuantity(index, value){
 
         cart[index].quantity = 1;
 
+    }
+
+
+    localStorage.setItem(
+        "boivanaCart",
+        JSON.stringify(cart)
+    );
+
+
+    location.reload();
+
+}
+function changeQuantity(index, value){
+
+    if(!cart[index].quantity){
+        cart[index].quantity = 1;
+    }
+
+
+    cart[index].quantity += value;
+
+
+    if(cart[index].quantity < 1){
+        cart[index].quantity = 1;
     }
 
 
