@@ -14,13 +14,74 @@ let cart = JSON.parse(localStorage.getItem("boivanaCart")) || [];
 // Buy Now
 // =======================
 
-const buyButtons = document.querySelectorAll(".buy-btn");
+// =======================
+// Buy Now Button (Dynamic)
+// =======================
 
 
-buyButtons.forEach(button => {
+document.addEventListener("click", (e)=>{
 
-    button.addEventListener("click",()=>{
 
+    if(e.target.classList.contains("buy-btn")){
+
+
+        const bookCard = e.target.closest(".book");
+
+
+
+        const book = {
+
+
+            title:
+            bookCard.querySelector("h3").innerText,
+
+
+            price:
+            bookCard.querySelector("p")
+            .innerText
+            .replace("৳","")
+            .trim(),
+
+
+            image:
+            bookCard.querySelector("img")
+            ?
+            bookCard.querySelector("img").src
+            :
+            "",
+
+
+            quantity:1
+
+
+        };
+
+
+
+        cart.push(book);
+
+
+
+        localStorage.setItem(
+            "boivanaCart",
+            JSON.stringify(cart)
+        );
+
+
+
+        alert(
+        book.title + " added to cart 🛒"
+        );
+
+
+
+        updateCartCount();
+
+
+    }
+
+
+});
 
         const bookCard = button.closest(".book");
 
