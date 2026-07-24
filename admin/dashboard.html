@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Boivana Admin Dashboard</title>
+
+<link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h2>📚 Boivana Admin</h2>
+
+<a href="orders.html">
+Orders
+</a>
+
+</header>
+
+
+
+<section class="cart-section">
+
+
+<h1>Admin Dashboard</h1>
+
+
+<div class="books">
+
+
+<div class="book">
+
+<h3>📚 Manage Books</h3>
+
+<p>
+Add, Edit & Delete Books
+</p>
+
+
+<a href="books.html">
+
+<button>
+Go to Books
+</button>
+
+</a>
+
+</div>
+
+
+
+<div class="book">
+
+<h3>🛒 Manage Orders</h3>
+
+<p>
+View Customer Orders
+</p>
+
+
+<a href="orders.html">
+
+<button>
+View Orders
+</button>
+
+</a>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+<script>
+
+if(
+localStorage.getItem("boivanaAdmin")
+!=="true"
+){
+
+window.location.href="login.html";
+
+}
+
+
+</script>
+
+
+
+</body>
+
+</html>
