@@ -3,10 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boivana</title>
+    <title>Boivana | Read • Learn • Grow</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <h1>Welcome to Boivana 📚</h1>
-    <p>Website is under development...</p>
+
+<header>
+    <nav>
+        <h2>📚 Boivana</h2>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Books</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+
+    <h1>Welcome to Boivana</h1>
+
+    <p>
+        Read • Learn • Grow
+    </p>
+
+    <input
+        type="text"
+        placeholder="Search books...">
+
+</section>
+
+<section>
+
+<h2>Featured Books</h2>
+
+<div class="books">
+
+<div class="book">
+<h3>Atomic Habits</h3>
+<p>৳450</p>
+<button>Buy Now</button>
+</div>
+
+<div class="book">
+<h3>The Psychology of Money</h3>
+<p>৳520</p>
+<button>Buy Now</button>
+</div>
+
+<div class="book">
+<h3>Rich Dad Poor Dad</h3>
+<p>৳380</p>
+<button>Buy Now</button>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 Boivana
+
+<br>
+
+Phone:
+01766008426
+
+<br>
+
+Email:
+boivanaofficial@gmail.com
+
+</p>
+
+</footer>
+
+<script src="assets/js/script.js"></script>
+
 </body>
 </html>
