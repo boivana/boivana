@@ -1,18 +1,17 @@
 // =======================
-// Boivana JavaScript
+// Boivana v2 JavaScript
 // =======================
 
 
-// =======================
 // Cart Data
-// =======================
 
 let cart = JSON.parse(localStorage.getItem("boivanaCart")) || [];
 
 
 
+
 // =======================
-// Buy Now Button
+// Buy Now
 // =======================
 
 const buyButtons = document.querySelectorAll(".buy-btn");
@@ -20,7 +19,7 @@ const buyButtons = document.querySelectorAll(".buy-btn");
 
 buyButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click",()=>{
 
 
         const bookCard = button.closest(".book");
@@ -30,9 +29,16 @@ buyButtons.forEach(button => {
 
             title: bookCard.querySelector("h3").innerText,
 
-            price: bookCard.querySelector("p").innerText,
-            
-            quantity: 1
+            price: Number(
+                bookCard.querySelector("p")
+                .innerText
+                .replace("৳","")
+                .trim()
+            ),
+
+            image: bookCard.querySelector("img").src,
+
+            quantity:1
 
         };
 
@@ -40,10 +46,7 @@ buyButtons.forEach(button => {
         cart.push(book);
 
 
-        localStorage.setItem(
-            "boivanaCart",
-            JSON.stringify(cart)
-        );
+        saveCart();
 
 
         alert(book.title + " added to cart 🛒");
@@ -59,20 +62,52 @@ buyButtons.forEach(button => {
 
 
 
+
+// =======================
+// Save Cart
+// =======================
+
+function saveCart(){
+
+    localStorage.setItem(
+        "boivanaCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+
+
+
 // =======================
 // Cart Count
 // =======================
 
 function updateCartCount(){
 
+
     const count = document.querySelector("#cart-count");
 
 
     if(count){
 
-        count.innerText = cart.length;
+
+        let total = 0;
+
+
+        cart.forEach(item=>{
+
+            total += item.quantity || 1;
+
+        });
+
+
+        count.innerText = total;
+
 
     }
+
 
 }
 
@@ -92,31 +127,24 @@ const searchInput = document.querySelector("input");
 
 if(searchInput){
 
+
     searchInput.addEventListener("keyup",()=>{
 
 
         let value = searchInput.value.toLowerCase();
 
 
-        const books = document.querySelectorAll(".book");
-
-
-        books.forEach(book=>{
+        document.querySelectorAll(".book")
+        .forEach(book=>{
 
 
             let text = book.innerText.toLowerCase();
 
 
-            if(text.includes(value)){
-
-                book.style.display="block";
-
-            }
-            else{
-
-                book.style.display="none";
-
-            }
+            book.style.display =
+            text.includes(value)
+            ? "block"
+            : "none";
 
 
         });
@@ -131,7 +159,7 @@ if(searchInput){
 
 
 // =======================
-// Show Cart Items
+// Show Cart
 // =======================
 
 const cartItems = document.querySelector("#cart-items");
@@ -146,57 +174,86 @@ if(cartItems){
     let total = 0;
 
 
+    if(cart.length === 0){
+
+        cartItems.innerHTML =
+        "<h3>Your cart is empty 🛒</h3>";
+
+    }
+
+
 
     cart.forEach((item,index)=>{
 
-    if(!item.quantity){
-        item.quantity = 1;
-    }
 
-    let price = Number(item.price.replace("৳","").trim());
+        if(!item.quantity){
 
-    total += price * item.quantity;
+            item.quantity = 1;
 
-
-    let div = document.createElement("div");
-
-    div.classList.add("cart-card");
+        }
 
 
-    div.innerHTML = `
-
-        <h3>${item.title}</h3>
-
-        <p>${item.price}</p>
+        total += item.price * item.quantity;
 
 
-        <div class="quantity-box">
 
-            <button onclick="changeQuantity(${index}, -1)">
+        let div = document.createElement("div");
+
+
+        div.classList.add("cart-card");
+
+
+
+        div.innerHTML = `
+
+            <img src="${item.image}" 
+            width="100">
+
+
+            <div>
+
+            <h3>${item.title}</h3>
+
+
+            <p>৳${item.price}</p>
+
+
+            <div class="quantity-box">
+
+                <button onclick="changeQuantity(${index},-1)">
                 -
-            </button>
+                </button>
 
 
-            <span>${item.quantity}</span>
+                <span>
+                ${item.quantity}
+                </span>
 
 
-            <button onclick="changeQuantity(${index}, 1)">
+                <button onclick="changeQuantity(${index},1)">
                 +
+                </button>
+
+
+            </div>
+
+
+            <button onclick="removeCart(${index})">
+            Remove
             </button>
 
-        </div>
+
+            </div>
+
+        `;
 
 
-        <button onclick="removeCart(${index})">
-            Remove
-        </button>
 
-    `;
+        cartItems.appendChild(div);
 
 
-    cartItems.appendChild(div);
 
-});
+    });
 
 
 
@@ -214,7 +271,7 @@ if(cartItems){
 
 
 // =======================
-// Remove Cart Item
+// Remove Cart
 // =======================
 
 function removeCart(index){
@@ -223,28 +280,27 @@ function removeCart(index){
     cart.splice(index,1);
 
 
-
-    localStorage.setItem(
-        "boivanaCart",
-        JSON.stringify(cart)
-    );
-
+    saveCart();
 
 
     location.reload();
 
 
 }
+
+
+
+
+
+// =======================
 // Quantity Change
+// =======================
 
-function changeQuantity(index, value){
-
-    if(!cart[index].quantity){
-        cart[index].quantity = 1;
-    }
+function changeQuantity(index,value){
 
 
     cart[index].quantity += value;
+
 
 
     if(cart[index].quantity < 1){
@@ -254,36 +310,11 @@ function changeQuantity(index, value){
     }
 
 
-    localStorage.setItem(
-        "boivanaCart",
-        JSON.stringify(cart)
-    );
+
+    saveCart();
 
 
     location.reload();
 
-}
-function changeQuantity(index, value){
-
-    if(!cart[index].quantity){
-        cart[index].quantity = 1;
-    }
-
-
-    cart[index].quantity += value;
-
-
-    if(cart[index].quantity < 1){
-        cart[index].quantity = 1;
-    }
-
-
-    localStorage.setItem(
-        "boivanaCart",
-        JSON.stringify(cart)
-    );
-
-
-    location.reload();
 
 }
