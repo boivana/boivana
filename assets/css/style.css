@@ -87,3 +87,15 @@ nav a{
 }
 
 footer{
+.cart-card{
+    padding:20px;
+    margin:15px 0;
+    border-radius:10px;
+    background:#f5f5f5;
+}
+
+.cart-card button{
+    padding:8px 15px;
+    border:none;
+    cursor:pointer;
+}
