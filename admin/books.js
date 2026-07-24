@@ -1,11 +1,22 @@
 // =======================
-// Boivana Admin Books JS
+// Boivana Admin Books Firebase
 // =======================
 
 
-let books = JSON.parse(
-    localStorage.getItem("boivanaBooks")
-) || [];
+import { db } from "../assets/js/firebase.js";
+
+
+import {
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    doc,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
 
 
 
@@ -16,11 +27,16 @@ const bookList = document.querySelector("#book-list");
 
 
 
+
+// =======================
 // Add Book
+// =======================
+
 
 if(form){
 
-form.addEventListener("submit",(e)=>{
+
+form.addEventListener("submit", async (e)=>{
 
 
     e.preventDefault();
@@ -29,7 +45,6 @@ form.addEventListener("submit",(e)=>{
 
     let book = {
 
-        id: Date.now(),
 
         title:
         document.querySelector("#book-title").value,
@@ -40,42 +55,66 @@ form.addEventListener("submit",(e)=>{
 
 
         image:
-        document.querySelector("#book-image").value
+        document.querySelector("#book-image").value,
+
+
+        createdAt:
+        serverTimestamp()
+
 
     };
 
 
 
-    books.push(book);
+    try{
+
+
+        await addDoc(
+            collection(db,"books"),
+            book
+        );
 
 
 
-    localStorage.setItem(
-        "boivanaBooks",
-        JSON.stringify(books)
-    );
+        alert("Book Added ✅");
 
 
-
-    alert("Book Added ✅");
-
-
-    form.reset();
+        form.reset();
 
 
-    showBooks();
+        showBooks();
+
+
+    }
+
+
+    catch(error){
+
+        console.log(error);
+
+        alert("Failed ❌");
+
+    }
+
 
 
 });
+
 
 }
 
 
 
 
-// Show Books
 
-function showBooks(){
+
+
+// =======================
+// Show Books
+// =======================
+
+
+async function showBooks(){
 
 
     if(!bookList) return;
@@ -86,7 +125,18 @@ function showBooks(){
 
 
 
-    books.forEach((book,index)=>{
+    const snapshot =
+    await getDocs(
+        collection(db,"books")
+    );
+
+
+
+    snapshot.forEach((item)=>{
+
+
+        let book = item.data();
+
 
 
         let div =
@@ -102,21 +152,25 @@ function showBooks(){
 
         <div>
 
-        <h3>${book.title}</h3>
+
+        <h3>
+        ${book.title}
+        </h3>
+
 
         <p>
         ৳${book.price}
         </p>
+
 
         <p>
         ${book.image}
         </p>
 
 
-        <button onclick="deleteBook(${index})">
 
+        <button onclick="deleteBook('${item.id}')">
         Delete
-
         </button>
 
 
@@ -139,20 +193,22 @@ function showBooks(){
 
 
 
+
+
+// =======================
 // Delete Book
-
-function deleteBook(index){
-
-
-    books.splice(index,1);
+// =======================
 
 
+window.deleteBook = async function(id){
 
-    localStorage.setItem(
-        "boivanaBooks",
-        JSON.stringify(books)
+
+    await deleteDoc(
+        doc(db,"books",id)
     );
 
+
+    alert("Book Deleted ✅");
 
 
     showBooks();
