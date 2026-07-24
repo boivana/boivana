@@ -30,7 +30,7 @@ buyButtons.forEach(button => {
 
             title: bookCard.querySelector("h3").innerText,
 
-            price: bookCard.querySelector("p").innerText
+            price: bookCard.querySelector("p").innerText,
             
             quantity: 1
 
