@@ -70,3 +70,46 @@ categoryButtons.forEach(btn => {
 
     });
 });
+// Boivana Cart System
+
+let cart = JSON.parse(localStorage.getItem("boivanaCart")) || [];
+
+const buyButtons = document.querySelectorAll(".buy-btn");
+
+buyButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const bookCard = button.closest(".book-card");
+
+        const book = {
+            title: bookCard.querySelector("h3").innerText,
+            price: bookCard.querySelector(".price").innerText
+        };
+
+        cart.push(book);
+
+        localStorage.setItem("boivanaCart", JSON.stringify(cart));
+
+        alert(book.title + " added to cart 🛒");
+
+        updateCartCount();
+
+    });
+
+});
+
+
+// Cart Count Update
+
+function updateCartCount(){
+
+    const cartCount = document.querySelector("#cart-count");
+
+    if(cartCount){
+        cartCount.innerText = cart.length;
+    }
+
+}
+
+updateCartCount();
