@@ -54,7 +54,7 @@ categoryButtons.forEach(btn => {
 
         let category = btn.innerText.toLowerCase();
 
-        let books = document.querySelectorAll(".book-card");
+        let books = document.querySelectorAll(".book");
 
         books.forEach(book => {
 
@@ -80,7 +80,7 @@ buyButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
-        const bookCard = button.closest(".book-card");
+        const bookCard = button.closest(".book");
 
         const book = {
             title: bookCard.querySelector("h3").innerText,
