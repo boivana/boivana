@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boivana Cart</title>
+
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<script type="module" src="assets/js/auth-guard.js"></script>
+
 <body>
 
 <header>
+
     <h2>🛒 Boivana Cart</h2>
+
     <a href="index.html">← Continue Shopping</a>
+
 </header>
 
 
@@ -21,27 +26,27 @@
 
     <div id="cart-items"></div>
 
+    <br>
+
     <h2>
-    Total: ৳ <span id="total-price">0</span>
-</h2>
+        Total: ৳ <span id="total-price">0</span>
+    </h2>
 
+    <br>
 
-<br>
-
-
-<button id="checkout-btn">
-    Proceed to Checkout
-</button>
+    <button id="checkout-btn">
+        Proceed to Checkout
+    </button>
 
 </section>
+
 
 <style>
 
 #checkout-btn{
 
     background:#2E7D32;
-
-    color:white;
+    color:#fff;
 
     border:none;
 
@@ -54,7 +59,6 @@
     cursor:pointer;
 
 }
-
 
 #checkout-btn:hover{
 
@@ -69,7 +73,6 @@
 
 const checkoutBtn = document.querySelector("#checkout-btn");
 
-
 if(checkoutBtn){
 
     checkoutBtn.addEventListener("click",()=>{
@@ -79,9 +82,16 @@ if(checkoutBtn){
     });
 
 }
-<script type="module" src="assets/js/auth.js"></script>
+
 </script>
-<script src="assets/js/script.js"></script>
+
+
+<script type="module" src="assets/js/auth.js"></script>
+
+<script type="module" src="assets/js/auth-guard.js"></script>
+
+<script type="module" src="assets/js/script.js"></script>
 
 </body>
+
 </html>
