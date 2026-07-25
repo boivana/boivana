@@ -79,7 +79,11 @@ if(checkoutItems){
 
 
 
-    checkoutTotal.innerText = total;
+    const delivery = 60;
+
+document.querySelector("#subtotal").innerText = total;
+
+checkoutTotal.innerText = total + delivery;
 
 
 }
