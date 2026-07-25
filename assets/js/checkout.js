@@ -26,6 +26,8 @@ let cart = JSON.parse(
 const checkoutItems = document.querySelector("#checkout-items");
 
 const checkoutTotal = document.querySelector("#checkout-total");
+const payment = document.getElementById("payment");
+const bkashBox = document.getElementById("bkash-box");
 
 
 
@@ -238,8 +240,8 @@ alert("❌ Invalid Coupon");
 });
 
 }
-const payment = document.getElementById("payment");
-const bkashBox = document.getElementById("bkash-box");
+
+
 
 payment.addEventListener("change",()=>{
 
