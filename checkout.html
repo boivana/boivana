@@ -254,25 +254,37 @@ id="address"
 placeholder="Delivery Address"
 required></textarea>
 
+
+<label>Payment Method</label>
+
 <select id="payment">
 
-<option>Cash on Delivery</option>
+<option value="cod">
+Cash on Delivery
+</option>
 
-<option>bKash</option>
-
-<option>Nagad</option>
-
-<option>Rocket</option>
+<option value="bkash">
+bKash
+</option>
 
 </select>
 
-<button type="submit">
 
-Place Order
+<div id="bkash-box" style="display:none;">
 
-</button>
+<p style="color:#2E7D32;font-weight:bold;margin-bottom:10px;">
+📱 bKash Payment
+</p>
 
-</form>
+<p>
+Send Money to:
+<strong>01766008426</strong>
+</p>
+
+<input
+type="text"
+id="transaction-id"
+placeholder="Enter bKash Transaction ID">
 
 </div>
 
