@@ -280,6 +280,8 @@ book.innerText.toLowerCase();
 // =======================
 
 const cartItems = document.querySelector("#cart-items");
+    console.log(cart);
+console.log(cartItems);
 const totalPrice = document.querySelector("#total-price");
 
 if (cartItems) {
