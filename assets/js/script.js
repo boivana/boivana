@@ -1,7 +1,6 @@
 // =======================
-// Boivana v3 JavaScript
+// Boivana v4 Script
 // =======================
-
 
 // Firebase
 
@@ -10,23 +9,22 @@ import { db } from "./firebase.js";
 import {
     collection,
     getDocs
-} from 
+}
+from
 "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
-
-
+// =======================
 // Cart Data
+// =======================
 
 let cart = JSON.parse(
     localStorage.getItem("boivanaCart")
 ) || [];
 
 
-
-
 // =======================
-// Cart Save
+// Save Cart
 // =======================
 
 function saveCart(){
@@ -39,9 +37,6 @@ function saveCart(){
 }
 
 
-
-
-
 // =======================
 // Cart Count
 // =======================
@@ -51,237 +46,161 @@ function updateCartCount(){
     const count =
     document.querySelector("#cart-count");
 
+    if(!count) return;
 
-    if(count){
+    let total = 0;
 
-        let total = 0;
+    cart.forEach(item=>{
 
+        total += item.quantity || 1;
 
-        cart.forEach(item=>{
+    });
 
-            total += item.quantity || 1;
-
-        });
-
-
-        count.innerText = total;
-
-    }
+    count.innerText = total;
 
 }
-
 
 updateCartCount();
 
 
-
-
-
 // =======================
-// Load Books Firebase
+// Load Books
 // =======================
-
 
 const bookContainer =
 document.querySelector("#book-container");
 
-
-
 async function loadBooks(){
-
 
     if(!bookContainer) return;
 
-
-
     bookContainer.innerHTML =
-    "Loading books...";
-
-
+    "<h2>Loading books...</h2>";
 
     const snapshot =
     await getDocs(
         collection(db,"books")
     );
 
-
-
     bookContainer.innerHTML="";
-
-
 
     snapshot.forEach((doc)=>{
 
+        const book = doc.data();
 
-        let book = doc.data();
-
-
-
-        let div =
+        const div =
         document.createElement("div");
 
+        div.className="book";
 
+        div.innerHTML=`
 
-        div.classList.add("book");
+        <img src="${book.image}" alt="${book.title}">
 
+        <h3>${book.title}</h3>
 
-
-        div.innerHTML = `
-
-
-        <img src="${book.image}" width="120">
-
-
-        <h3>
-        ${book.title}
-        </h3>
-
-
-        <p>
-        ৳${book.price}
-        </p>
-
+        <p>৳${book.price}</p>
 
         <button class="buy-btn">
-        Buy Now
+            Buy Now
         </button>
-
 
         `;
 
-
-
         bookContainer.appendChild(div);
-
-
 
     });
 
-
-
 }
-
-
 
 loadBooks();
 
 
-
-
-
-
 // =======================
-// Buy Now Dynamic
+// Buy Now
 // =======================
 
+document.addEventListener("click",(e)=>{
 
-document.addEventListener(
-"click",
-(e)=>{
+    if(!e.target.classList.contains("buy-btn"))
+    return;
 
+    const card =
+    e.target.closest(".book");
 
-    if(
-    e.target.classList.contains("buy-btn")
-    ){
+    const book={
 
+        title:
+        card.querySelector("h3").innerText,
 
-        const bookCard =
-        e.target.closest(".book");
+        price:Number(
+        card.querySelector("p")
+        .innerText
+        .replace("৳","")
+        .trim()
+        ),
 
+        image:
+        card.querySelector("img").src,
 
+        quantity:1
 
-        const book = {
+    };
 
+    cart.push(book);
 
-            title:
-            bookCard.querySelector("h3").innerText,
+    saveCart();
 
+    updateCartCount();
 
-            price:
-            Number(
-            bookCard.querySelector("p")
-            .innerText
-            .replace("৳","")
-            .trim()
-            ),
-
-
-            image:
-            bookCard.querySelector("img").src,
-
-
-            quantity:1
-
-
-        };
-
-
-
-        cart.push(book);
-
-
-
-        saveCart();
-
-
-
-        alert(
-        book.title+
-        " added to cart 🛒"
-        );
-
-
-
-        updateCartCount();
-
-
-    }
-
+    alert(book.title+" added to cart 🛒");
 
 });
-
-
-
-
 
 
 // =======================
 // Search
 // =======================
 
-
 const searchInput =
 document.querySelector("input");
 
-
-
 if(searchInput){
 
+searchInput.addEventListener("keyup",()=>{
 
-searchInput.addEventListener(
-"keyup",
-()=>{
-
-
-let value =
+const value=
 searchInput.value.toLowerCase();
 
-
-
-document.querySelectorAll(".book")
+document
+.querySelectorAll(".book")
 .forEach(book=>{
 
-
-let text =
+const text=
 book.innerText.toLowerCase();
 
+book.style.display=
+
+text.includes(value)
+
+?
+
+"block"
+
+:
+
+"none";
+
+});
+
+});
+
+}
 // =======================
-// Show Cart Items
+// Cart Page
 // =======================
 
 const cartItems = document.querySelector("#cart-items");
-    console.log(cart);
-console.log(cartItems);
 const totalPrice = document.querySelector("#total-price");
 
 if (cartItems) {
@@ -294,7 +213,7 @@ if (cartItems) {
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-        <div style="text-align:center;padding:40px;">
+        <div style="text-align:center;padding:50px;">
             <h2>🛒 Your cart is empty</h2>
             <br>
             <a href="index.html">Continue Shopping</a>
@@ -303,106 +222,150 @@ if (cartItems) {
 
     } else {
 
-        cart.forEach((item, index) => {
+        cart.forEach((item,index)=>{
 
-            if (!item.quantity) item.quantity = 1;
+            if(!item.quantity){
+                item.quantity = 1;
+            }
 
             total += item.price * item.quantity;
             totalItems += item.quantity;
 
-            const div = document.createElement("div");
+            const card = document.createElement("div");
 
-            div.className = "cart-card";
+            card.className = "cart-card";
 
-            div.innerHTML = `
-                <img src="${item.image}" width="120">
+            card.innerHTML = `
 
-                <div class="cart-info">
+            <img src="${item.image}" alt="${item.title}">
 
-                    <h3>${item.title}</h3>
+            <div class="cart-info">
 
-                    <p>৳${item.price}</p>
+                <h3>${item.title}</h3>
 
-                    <div class="quantity-box">
+                <p>Price : ৳${item.price}</p>
 
-                        <button onclick="changeQuantity(${index},-1)">−</button>
+                <div class="quantity-box">
 
-                        <span>${item.quantity}</span>
+                    <button class="minus-btn" data-index="${index}">
+                    −
+                    </button>
 
-                        <button onclick="changeQuantity(${index},1)">+</button>
+                    <span>${item.quantity}</span>
 
-                    </div>
-
-                    <button onclick="removeCart(${index})">
-                        🗑 Remove
+                    <button class="plus-btn" data-index="${index}">
+                    +
                     </button>
 
                 </div>
+
+                <button class="remove-btn" data-index="${index}">
+                    🗑 Remove
+                </button>
+
+            </div>
+
             `;
 
-            cartItems.appendChild(div);
+            cartItems.appendChild(card);
 
         });
 
     }
 
-    if (totalPrice) totalPrice.innerText = total;
+    if(totalPrice){
+        totalPrice.innerText = total;
+    }
 
     const count = document.querySelector("#cart-count");
-    if (count) count.innerText = totalItems;
+
+    if(count){
+        count.innerText = totalItems;
+    }
 
 }
 
 
 
 // =======================
-// Remove Cart
+// Cart Buttons
 // =======================
 
-window.removeCart = function(index){
+document.addEventListener("click",(e)=>{
 
-    cart.splice(index,1);
+    // Remove
 
-    saveCart();
+    if(e.target.classList.contains("remove-btn")){
 
-    location.reload();
+        const index =
+        Number(e.target.dataset.index);
 
-};
+        cart.splice(index,1);
 
+        saveCart();
 
-
-// =======================
-// Change Quantity
-// =======================
-
-window.changeQuantity = function(index,value){
-
-    cart[index].quantity += value;
-
-    if(cart[index].quantity < 1){
-
-        cart[index].quantity = 1;
+        location.reload();
 
     }
 
-    saveCart();
+    // Plus
 
-    location.reload();
+    if(e.target.classList.contains("plus-btn")){
 
-};
+        const index =
+        Number(e.target.dataset.index);
 
-book.style.display =
-text.includes(value)
-?
-"block"
-:
-"none";
+        cart[index].quantity++;
 
+        saveCart();
+
+        location.reload();
+
+    }
+
+    // Minus
+
+    if(e.target.classList.contains("minus-btn")){
+
+        const index =
+        Number(e.target.dataset.index);
+
+        if(cart[index].quantity>1){
+
+            cart[index].quantity--;
+
+        }
+
+        saveCart();
+
+        location.reload();
+
+    }
 
 });
 
 
-});
+// =======================
+// Checkout
+// =======================
 
+const checkoutBtn =
+document.querySelector("#checkout-btn");
+
+if(checkoutBtn){
+
+    checkoutBtn.addEventListener("click",()=>{
+
+        if(cart.length===0){
+
+            alert("Your cart is empty!");
+
+            return;
+
+        }
+
+        window.location.href="checkout.html";
+
+    });
 
 }
