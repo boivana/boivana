@@ -210,3 +210,19 @@ alert("❌ Invalid Coupon");
 });
 
 }
+const payment = document.getElementById("payment");
+const bkashBox = document.getElementById("bkash-box");
+
+payment.addEventListener("change",()=>{
+
+if(payment.value==="bkash"){
+
+bkashBox.style.display="block";
+
+}else{
+
+bkashBox.style.display="none";
+
+}
+
+});
