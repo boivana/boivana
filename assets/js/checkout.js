@@ -187,3 +187,26 @@ orderForm.addEventListener("submit", async (e)=>{
 
 
 }
+const couponBtn =
+document.querySelector("#apply-coupon");
+
+if(couponBtn){
+
+couponBtn.addEventListener("click",()=>{
+
+const code =
+document.querySelector("#coupon").value;
+
+if(code==="BOIVANA10"){
+
+alert("✅ Coupon Applied!");
+
+}else{
+
+alert("❌ Invalid Coupon");
+
+}
+
+});
+
+}
