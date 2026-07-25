@@ -2,234 +2,184 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Boivana | Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+<title>Boivana Login</title>
 
-    <style>
+<link rel="stylesheet" href="assets/css/style.css">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+<style>
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#1B5E20,#2E7D32,#4CAF50);
-    padding:20px;
-}
 
-.login-card{
-
-    width:100%;
-    max-width:420px;
-
-    background:#ffffff;
-
-    border-radius:20px;
-
-    padding:35px;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.2);
-
-    text-align:center;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#1B5E20,#4CAF50);
+font-family:Arial,sans-serif;
 
 }
+
+
+.login-box{
+
+width:90%;
+max-width:400px;
+
+background:white;
+
+padding:35px;
+
+border-radius:20px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+text-align:center;
+
+}
+
 
 .logo{
 
-    width:90px;
-    height:90px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    background:#2E7D32;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    color:#fff;
-
-    font-size:40px;
+font-size:55px;
 
 }
+
 
 h1{
 
-    margin:20px 0 10px;
+color:#2E7D32;
 
-    color:#2E7D32;
-
-}
-
-p{
-
-    color:#666;
-
-    margin-bottom:25px;
+margin:15px 0;
 
 }
 
-.input-group{
 
-    margin-bottom:18px;
+input{
 
-}
+width:100%;
 
-.input-group input{
+padding:14px;
 
-    width:100%;
+margin:10px 0;
 
-    padding:15px;
+border:1px solid #ddd;
 
-    border:1px solid #ddd;
+border-radius:10px;
 
-    border-radius:10px;
-
-    font-size:16px;
+font-size:16px;
 
 }
 
-.input-group input:focus{
 
-    outline:none;
+button{
 
-    border-color:#2E7D32;
+width:100%;
 
-}
+padding:14px;
 
-.login-btn{
+margin-top:15px;
 
-    width:100%;
+border:none;
 
-    padding:15px;
+border-radius:10px;
 
-    border:none;
+background:#2E7D32;
 
-    border-radius:10px;
+color:white;
 
-    background:#2E7D32;
+font-size:17px;
 
-    color:#fff;
+font-weight:bold;
 
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
+cursor:pointer;
 
 }
 
-.login-btn:hover{
 
-    background:#1B5E20;
+button:hover{
 
-}
-
-.register{
-
-    margin-top:20px;
+background:#1B5E20;
 
 }
 
-.register a{
 
-    color:#2E7D32;
+a{
 
-    text-decoration:none;
+color:#2E7D32;
 
-    font-weight:bold;
+font-weight:bold;
 
-}
-
-.footer{
-
-    margin-top:25px;
-
-    color:#888;
-
-    font-size:13px;
+text-decoration:none;
 
 }
 
-    </style>
+
+</style>
 
 </head>
 
+
 <body>
 
-<div class="login-card">
 
-    <div class="logo">📚</div>
+<div class="login-box">
 
-    <h1>Welcome to Boivana</h1>
 
-    <p>Login to access your account.</p>
+<div class="logo">
+📚
+</div>
 
-    <div class="input-group">
 
-        <input
-        type="email"
-        id="email"
-        placeholder="Email Address"
-        required>
+<h1>
+Boivana
+</h1>
 
-    </div>
 
-    <div class="input-group">
+<p>
+Login to continue reading
+</p>
 
-        <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        required>
 
-    </div>
+<input 
+type="email"
+id="email"
+placeholder="Email Address">
 
-    <button
-    class="login-btn"
-    onclick="loginUser()">
 
-        Login
+<input
+type="password"
+id="password"
+placeholder="Password">
 
-    </button>
 
-    <div class="register">
+<button onclick="loginUser()">
 
-        Don't have an account?
+Login
 
-        <br><br>
+</button>
 
-        <a href="register.html">
 
-            Create Account
+<br><br>
 
-        </a>
 
-    </div>
+<p>
+Don't have account?
+<a href="register.html">
+Register
+</a>
+</p>
 
-    <div class="footer">
-
-        © 2026 Boivana
-
-    </div>
 
 </div>
 
+
+
 <script type="module" src="assets/js/auth.js"></script>
+
 
 </body>
 
