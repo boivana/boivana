@@ -104,19 +104,33 @@ if(orderForm){
 orderForm.addEventListener("submit", async (e)=>{
 
 
-    e.preventDefault();
+e.preventDefault();
+
+
+const paymentMethod =
+document.querySelector("#payment").value;
+
+
 let transactionId="";
 
-if(payment.value==="bkash"){
 
-transactionId=document.getElementById("transaction-id").value;
+if(paymentMethod==="bkash"){
+
+
+transactionId =
+document.querySelector("#transaction-id").value;
+
 
 if(transactionId===""){
 
+
 alert("Please enter bKash Transaction ID");
+
 return;
 
+
 }
+
 
 }
 
