@@ -1,119 +1,182 @@
-// =======================
-// Boivana Customer Auth
-// =======================
+// Boivana Authentication
 
 import { auth } from "./firebase-auth.js";
 
+
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-
-// =======================
-// Register
-// =======================
-
-window.registerUser = async function () {
-
-    const email = document.querySelector("#email").value.trim();
-    const password = document.querySelector("#password").value;
-
-    try {
-
-        await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-        alert("Account created successfully ✅");
-
-        location.href = "login.html";
-
-    } catch (error) {
-
-    console.log(error);
-
-    alert(error.code + "\n" + error.message);
+signInWithEmailAndPassword,
+createUserWithEmailAndPassword,
+signOut,
+onAuthStateChanged
 
 }
 
-    }
+from
+
+"https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+
+
+
+// LOGIN
+
+window.loginUser = async function(){
+
+
+const email =
+document.querySelector("#email").value.trim();
+
+
+const password =
+document.querySelector("#password").value;
+
+
+
+if(!email || !password){
+
+alert("Email and password required");
+
+return;
+
+}
+
+
+
+try{
+
+
+await signInWithEmailAndPassword(
+
+auth,
+email,
+password
+
+);
+
+
+
+alert("Login successful ✅");
+
+
+window.location.href="index.html";
+
+
+
+}
+
+catch(error){
+
+
+alert(error.message);
+
+
+}
+
+
 
 };
 
 
-// =======================
-// Login
-// =======================
 
-window.loginUser = async function () {
 
-    const email = document.querySelector("#email").value.trim();
-    const password = document.querySelector("#password").value;
 
-    try {
+// REGISTER
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+window.registerUser = async function(){
 
-        alert("Login successful ✅");
 
-        location.href = "index.html";
+const email =
+document.querySelector("#email").value.trim();
 
-    } catch (error) {
 
-        alert(error.message);
+const password =
+document.querySelector("#password").value;
 
-    }
+
+
+try{
+
+
+await createUserWithEmailAndPassword(
+
+auth,
+email,
+password
+
+);
+
+
+
+alert("Account created ✅");
+
+
+window.location.href="login.html";
+
+
+}
+
+catch(error){
+
+
+alert(error.message);
+
+
+}
+
+
 
 };
 
 
-// =======================
-// Logout
-// =======================
 
-window.logoutUser = async function () {
 
-    try {
 
-        await signOut(auth);
 
-        location.href = "login.html";
+// LOGOUT
 
-    } catch (error) {
 
-        alert(error.message);
+window.logoutUser = async function(){
 
-    }
+
+await signOut(auth);
+
+
+window.location.href="login.html";
+
 
 };
 
 
-// =======================
-// Login Protection
-// =======================
 
-onAuthStateChanged(auth, (user) => {
 
-    const page = location.pathname.split("/").pop();
 
-    const publicPages = [
-        "login.html",
-        "register.html"
-    ];
+// CHECK LOGIN
 
-    if (!user && !publicPages.includes(page)) {
 
-        location.replace("login.html");
+onAuthStateChanged(auth,(user)=>{
 
-    }
+
+let page =
+window.location.pathname;
+
+
+if(
+
+!user &&
+
+!page.includes("login.html") &&
+
+!page.includes("register.html")
+
+){
+
+
+window.location.href="login.html";
+
+
+}
+
+
 
 });
