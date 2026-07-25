@@ -2,168 +2,298 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boivana Register</title>
-  
-  <!-- Modern Font: Google Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/style.css">
 
-  <style>
-    /* Premium Styling */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at top left, #1a1c29, #0d0e15);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+<title>Boivana | Register</title>
 
-    header {
-      margin-bottom: 30px;
-      text-align: center;
-    }
+<style>
 
-    header h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #a855f7, #6366f1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-    .cart-section {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 40px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
+body{
 
-    .cart-section h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-      color: #f3f4f6;
-    }
+min-height:100vh;
 
-    .input-group {
-      margin-bottom: 18px;
-    }
+display:flex;
+justify-content:center;
+align-items:center;
 
-    input {
-      width: 100%;
-      padding: 14px 16px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
-      color: #fff;
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.3s ease;
-    }
+background:linear-gradient(135deg,#1B5E20,#2E7D32,#66BB6A);
 
-    input::placeholder {
-      color: #9ca3af;
-    }
+overflow:hidden;
 
-    input:focus {
-      border-color: #8b5cf6;
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
-    }
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #8b5cf6, #6366f1);
-      color: #ffffff;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-    }
+body::before{
 
-    button:hover {
-      opacity: 0.95;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-    }
+content:"";
 
-    button:active {
-      transform: translateY(0);
-    }
+position:absolute;
 
-    p {
-      margin-top: 24px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
+width:320px;
+height:320px;
 
-    a {
-      color: #a78bfa;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
+border-radius:50%;
 
-    a:hover {
-      color: #c4b5fd;
-      text-decoration: underline;
-    }
-  </style>
+background:rgba(255,255,255,.08);
+
+top:-80px;
+left:-80px;
+
+}
+
+body::after{
+
+content:"";
+
+position:absolute;
+
+width:250px;
+height:250px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.08);
+
+bottom:-70px;
+right:-70px;
+
+}
+
+.register-card{
+
+width:90%;
+max-width:430px;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.25);
+
+border-radius:25px;
+
+padding:40px 30px;
+
+text-align:center;
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+position:relative;
+
+z-index:1;
+
+}
+
+.logo{
+
+width:90px;
+height:90px;
+
+background:#fff;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:45px;
+
+margin:auto;
+
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+}
+
+h2{
+
+color:#fff;
+
+margin-top:20px;
+
+font-size:30px;
+
+}
+
+.subtitle{
+
+color:#E8F5E9;
+
+margin:10px 0 30px;
+
+}
+
+.input-box{
+
+margin-bottom:18px;
+
+}
+
+.input-box input{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:12px;
+
+font-size:16px;
+
+background:rgba(255,255,255,.92);
+
+}
+
+.input-box input:focus{
+
+outline:none;
+
+box-shadow:0 0 0 3px rgba(255,255,255,.35);
+
+}
+
+.register-btn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:12px;
+
+background:#FFD54F;
+
+color:#222;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.register-btn:hover{
+
+transform:translateY(-2px);
+
+background:#FFCA28;
+
+}
+
+.extra{
+
+margin-top:22px;
+
+color:#fff;
+
+}
+
+.extra a{
+
+color:#FFD54F;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+.footer{
+
+margin-top:25px;
+
+color:#E8F5E9;
+
+font-size:13px;
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <header>
-    <h2>📚 Boivana Register</h2>
-  </header>
+<div class="register-card">
 
-  <section class="cart-section">
-    <h1>Create Account</h1>
+<div class="logo">
 
-    <div class="input-group">
-      <input id="email" type="email" placeholder="Email">
-    </div>
+📚
 
-    <div class="input-group">
-      <input id="password" type="password" placeholder="Password">
-    </div>
+</div>
 
-    <button onclick="registerUser()">Register</button>
+<h2>Join Boivana</h2>
 
-    <p>
-      Already have account?
-      <a href="login.html">Login</a>
-    </p>
-  </section>
+<p class="subtitle">
 
-  <script type="module" src="assets/js/auth.js"></script>
+Create your account and start your reading journey.
+
+</p>
+
+<div class="input-box">
+
+<input
+type="email"
+id="email"
+placeholder="📧 Email Address"
+required>
+
+</div>
+
+<div class="input-box">
+
+<input
+type="password"
+id="password"
+placeholder="🔒 Password"
+required>
+
+</div>
+
+<button
+class="register-btn"
+onclick="registerUser()">
+
+Create Account
+
+</button>
+
+<div class="extra">
+
+Already have an account?
+
+<br><br>
+
+<a href="login.html">
+
+Login Here
+
+</a>
+
+</div>
+
+<div class="footer">
+
+© 2026 Boivana • Read • Learn • Grow
+
+</div>
+
+</div>
+
+<script type="module" src="assets/js/auth.js"></script>
 
 </body>
 
