@@ -275,7 +275,119 @@ document.querySelectorAll(".book")
 let text =
 book.innerText.toLowerCase();
 
+// =======================
+// Show Cart Items
+// =======================
 
+const cartItems = document.querySelector("#cart-items");
+const totalPrice = document.querySelector("#total-price");
+
+if (cartItems) {
+
+    cartItems.innerHTML = "";
+
+    let total = 0;
+    let totalItems = 0;
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+        <div style="text-align:center;padding:40px;">
+            <h2>🛒 Your cart is empty</h2>
+            <br>
+            <a href="index.html">Continue Shopping</a>
+        </div>
+        `;
+
+    } else {
+
+        cart.forEach((item, index) => {
+
+            if (!item.quantity) item.quantity = 1;
+
+            total += item.price * item.quantity;
+            totalItems += item.quantity;
+
+            const div = document.createElement("div");
+
+            div.className = "cart-card";
+
+            div.innerHTML = `
+                <img src="${item.image}" width="120">
+
+                <div class="cart-info">
+
+                    <h3>${item.title}</h3>
+
+                    <p>৳${item.price}</p>
+
+                    <div class="quantity-box">
+
+                        <button onclick="changeQuantity(${index},-1)">−</button>
+
+                        <span>${item.quantity}</span>
+
+                        <button onclick="changeQuantity(${index},1)">+</button>
+
+                    </div>
+
+                    <button onclick="removeCart(${index})">
+                        🗑 Remove
+                    </button>
+
+                </div>
+            `;
+
+            cartItems.appendChild(div);
+
+        });
+
+    }
+
+    if (totalPrice) totalPrice.innerText = total;
+
+    const count = document.querySelector("#cart-count");
+    if (count) count.innerText = totalItems;
+
+}
+
+
+
+// =======================
+// Remove Cart
+// =======================
+
+window.removeCart = function(index){
+
+    cart.splice(index,1);
+
+    saveCart();
+
+    location.reload();
+
+};
+
+
+
+// =======================
+// Change Quantity
+// =======================
+
+window.changeQuantity = function(index,value){
+
+    cart[index].quantity += value;
+
+    if(cart[index].quantity < 1){
+
+        cart[index].quantity = 1;
+
+    }
+
+    saveCart();
+
+    location.reload();
+
+};
 
 book.style.display =
 text.includes(value)
