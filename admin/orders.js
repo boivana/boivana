@@ -115,8 +115,8 @@ function showOrders(){
 
 
         <h3>
-        Order #${index+1}
-        </h3>
+Order No: ${order.orderNumber || "BV-"+(index+1)}
+</h3>
 
 
         <p>
@@ -137,13 +137,19 @@ function showOrders(){
         <p>
         Payment: ${order.payment}
         </p>
-
+<p>
+Transaction ID: 
+${order.transactionId || "N/A"}
+</p>
 
         <p>
         Total: ৳${order.total}
         </p>
 
-
+<p>
+Order Date:
+${order.date ? new Date(order.date.seconds*1000).toLocaleString() : "N/A"}
+</p>
         <h4>
         Products:
         </h4>
