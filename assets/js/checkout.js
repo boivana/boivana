@@ -105,7 +105,20 @@ orderForm.addEventListener("submit", async (e)=>{
 
 
     e.preventDefault();
+let transactionId="";
 
+if(payment.value==="bkash"){
+
+transactionId=document.getElementById("transaction-id").value;
+
+if(transactionId===""){
+
+alert("Please enter bKash Transaction ID");
+return;
+
+}
+
+}
 
 
     const order = {
