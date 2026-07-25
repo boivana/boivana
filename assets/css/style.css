@@ -561,3 +561,49 @@ footer{
 }
 
 }
+.cart-card{
+display:flex;
+gap:20px;
+background:#fff;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+margin-bottom:20px;
+align-items:center;
+}
+
+.cart-card img{
+width:120px;
+height:170px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.cart-info{
+flex:1;
+}
+
+.quantity-box{
+display:flex;
+align-items:center;
+gap:10px;
+margin:15px 0;
+}
+
+.quantity-box button,
+.remove-btn{
+padding:8px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.quantity-box button{
+background:#2E7D32;
+color:#fff;
+}
+
+.remove-btn{
+background:#d32f2f;
+color:#fff;
+}
