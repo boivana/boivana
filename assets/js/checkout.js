@@ -256,3 +256,19 @@ bkashBox.style.display="none";
 }
 
 });
+function generateOrderNumber(){
+
+let date = new Date();
+
+let id =
+"BV-" +
+date.getFullYear() +
+(date.getMonth()+1) +
+date.getDate() +
+"-" +
+Math.floor(1000 + Math.random()*9000);
+
+
+return id;
+
+}
