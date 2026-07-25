@@ -138,7 +138,7 @@ return;
 
 
     const order = {
-
+orderNumber: generateOrderNumber(),
 
         customerName:
         document.querySelector("#name").value,
