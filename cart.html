@@ -2,214 +2,339 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boivana Cart</title>
 
-  <!-- Google Font: Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="assets/css/style.css">
+<title>Boivana | Shopping Cart</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+<link rel="stylesheet" href="assets/css/style.css">
 
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at top left, #1a1c29, #0d0e15);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-    }
+<style>
 
-    header {
-      width: 100%;
-      max-width: 600px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-    header h2 {
-      font-size: 1.5rem;
-      background: linear-gradient(135deg, #a855f7, #6366f1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+body{
+background:#F5F7FA;
+color:#222;
+}
 
-    header a {
-      color: #a78bfa;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
+/* Header */
 
-    header a:hover {
-      text-decoration: underline;
-    }
+header{
 
-    .cart-section {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 30px;
-      width: 100%;
-      max-width: 600px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
+background:#2E7D32;
+color:#fff;
 
-    .cart-section h1 {
-      font-size: 1.4rem;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 10px;
-    }
+padding:18px 8%;
 
-    /* Cart Item Card Styling */
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      margin-bottom: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
+display:flex;
+justify-content:space-between;
+align-items:center;
 
-    .cart-item-info h4 {
-      font-size: 1rem;
-      color: #f3f4f6;
-    }
+box-shadow:0 5px 15px rgba(0,0,0,.15);
 
-    .cart-item-info p {
-      font-size: 0.85rem;
-      color: #9ca3af;
-    }
+}
 
-    .empty-cart {
-      text-align: center;
-      color: #9ca3af;
-      padding: 20px 0;
-    }
+header h2{
 
-    .total-container {
-      margin-top: 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+font-size:28px;
 
-    #checkout-btn {
-      width: 100%;
-      margin-top: 20px;
-      padding: 14px;
-      background: linear-gradient(135deg, #2e7d32, #1b5e20);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
-    }
+}
 
-    #checkout-btn:hover {
-      opacity: 0.95;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
-    }
-  </style>
+header a{
+
+text-decoration:none;
+
+color:#fff;
+
+background:rgba(255,255,255,.15);
+
+padding:10px 18px;
+
+border-radius:10px;
+
+transition:.3s;
+
+}
+
+header a:hover{
+
+background:#fff;
+
+color:#2E7D32;
+
+}
+
+
+/* Layout */
+
+.cart-container{
+
+max-width:1200px;
+
+margin:40px auto;
+
+padding:0 20px;
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:30px;
+
+}
+
+
+/* Left */
+
+.cart-left{
+
+background:#fff;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.cart-left h1{
+
+margin-bottom:20px;
+
+color:#2E7D32;
+
+}
+
+
+/* Cart Items */
+
+#cart-items{
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+
+/* Right */
+
+.cart-right{
+
+background:#fff;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+height:max-content;
+
+position:sticky;
+
+top:25px;
+
+}
+
+.cart-right h2{
+
+margin-bottom:20px;
+
+color:#2E7D32;
+
+}
+
+.summary{
+
+display:flex;
+
+justify-content:space-between;
+
+margin:15px 0;
+
+font-size:17px;
+
+}
+
+.total{
+
+font-size:24px;
+
+font-weight:bold;
+
+color:#2E7D32;
+
+}
+
+#checkout-btn{
+
+width:100%;
+
+padding:15px;
+
+margin-top:25px;
+
+border:none;
+
+border-radius:12px;
+
+background:#2E7D32;
+
+color:#fff;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+#checkout-btn:hover{
+
+background:#1B5E20;
+
+transform:translateY(-2px);
+
+}
+
+.note{
+
+margin-top:20px;
+
+padding:15px;
+
+background:#E8F5E9;
+
+border-radius:10px;
+
+color:#2E7D32;
+
+font-size:14px;
+
+text-align:center;
+
+}
+
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.cart-container{
+
+grid-template-columns:1fr;
+
+}
+
+.cart-right{
+
+position:static;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <header>
-    <h2>🛒 Boivana Cart</h2>
-    <a href="index.html">← Continue Shopping</a>
-  </header>
+<header>
 
-  <section class="cart-section">
-    <h1>Your Cart</h1>
+<h2>🛒 Boivana Cart</h2>
 
-    <!-- Cart items logic JS diye render hobe -->
-    <div id="cart-items"></div>
+<a href="index.html">
+← Continue Shopping
+</a>
 
-    <div class="total-container">
-      <h3>Total:</h3>
-      <h2>৳ <span id="total-price">0</span></h2>
-    </div>
+</header>
 
-    <button id="checkout-btn">Proceed to Checkout</button>
-  </section>
+<div class="cart-container">
 
-  <script>
-    // LocalStorage theke cart data load korar logic
-    function displayCart() {
-      const cartContainer = document.getElementById("cart-items");
-      const totalPriceElement = document.getElementById("total-price");
-      
-      // LocalStorage theke data nilam (Jodi thake)
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+<div class="cart-left">
 
-      if (cart.length === 0) {
-        cartContainer.innerHTML = `<p class="empty-cart">Your cart is currently empty!</p>`;
-        totalPriceElement.innerText = "0";
-        return;
-      }
+<h1>Your Shopping Cart</h1>
 
-      let total = 0;
-      cartContainer.innerHTML = "";
+<div id="cart-items">
 
-      cart.forEach((item, index) => {
-        total += Number(item.price);
-        cartContainer.innerHTML += `
-          <div class="cart-item">
-            <div class="cart-item-info">
-              <h4>${item.title}</h4>
-              <p>৳ ${item.price}</p>
-            </div>
-            <button onclick="removeItem(${index})" style="background:transparent; border:none; color:#ef4444; cursor:pointer;">Remove</button>
-          </div>
-        `;
-      });
+<!-- Books will appear here -->
 
-      totalPriceElement.innerText = total;
-    }
+</div>
 
-    function removeItem(index) {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.splice(index, 1);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      displayCart();
-    }
+</div>
 
-    // Page load hone call korbe
-    document.addEventListener("DOMContentLoaded", displayCart);
 
-    const checkoutBtn = document.querySelector("#checkout-btn");
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener("click", () => {
-        window.location.href = "checkout.html";
-      });
-    }
-  </script>
+<div class="cart-right">
 
-  <script type="module" src="assets/js/auth.js"></script>
-  <script type="module" src="assets/js/auth-guard.js"></script>
-  <script type="module" src="assets/js/script.js"></script>
+<h2>Order Summary</h2>
+
+<div class="summary">
+
+<span>Items</span>
+
+<span id="cart-count">0</span>
+
+</div>
+
+<hr>
+
+<div class="summary total">
+
+<span>Total</span>
+
+<span>৳ <span id="total-price">0</span></span>
+
+</div>
+
+<button id="checkout-btn">
+
+Proceed to Checkout
+
+</button>
+
+<div class="note">
+
+📚 Thank you for choosing Boivana.<br>
+Happy Reading ❤️
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document
+.getElementById("checkout-btn")
+.addEventListener("click",function(){
+
+window.location.href="checkout.html";
+
+});
+
+</script>
+
+<script type="module" src="assets/js/auth.js"></script>
+
+<script type="module" src="assets/js/auth-guard.js"></script>
+
+<script type="module" src="assets/js/script.js"></script>
 
 </body>
 
